@@ -15,6 +15,7 @@
 		<hsqldb.version>2.2.9</hsqldb.version>
 		<jpa.version>1.2.0.RELEASE</jpa.version>
 		<log4j.version>1.2.17</log4j.version>
+		<spring.security.version>3.2.3.RELEASE</spring.security.version>
 	</properties>
 
 	<dependencies>
@@ -116,17 +117,44 @@
 			<version>3.0.1-RELEASE</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/commons-logging/commons-logging -->
-		<dependency>
+<!-- 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
 			<version>1.1.1</version>
-		</dependency>
-        <dependency>
+		</dependency> -->
+<!--         <dependency>
 			<groupId>org.sitemesh</groupId>
 			<artifactId>sitemesh</artifactId>
 			<version>3.0.0</version>
+		</dependency> -->
+		<!-- https://mvnrepository.com/artifact/opensymphony/sitemesh -->
+		<dependency>
+		    <groupId>opensymphony</groupId>
+		    <artifactId>sitemesh</artifactId>
+		    <version>2.4.2</version>
 		</dependency>
+				<!-- Spring Security -->
+		<!-- <dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
+		Spring Security JSP Taglib
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency> -->
 	</dependencies>
+	
+	
 
 	<build>
 		<plugins>
