@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
+import com.webstotales.ventasOnline.domain.ids.IngredienteComidaId;
+
 /**
  * @author JEXTM
  *

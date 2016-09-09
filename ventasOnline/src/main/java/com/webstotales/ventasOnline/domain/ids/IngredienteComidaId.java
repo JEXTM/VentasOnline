@@ -1,12 +1,15 @@
 /**
  * Created By: JEXTM 5 set. 2016
  */
-package com.webstotales.ventasOnline.domain;
+package com.webstotales.ventasOnline.domain.ids;
 
 import java.io.Serializable;
 
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
+
+import com.webstotales.ventasOnline.domain.Comida;
+import com.webstotales.ventasOnline.domain.Ingrediente;
 
 /**
  * @author JEXTM
