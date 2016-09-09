@@ -29,14 +29,44 @@
 		<servlet-name>MyServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>	
+	
+
+<!-- 	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> -->
 		<!-- sitemesh -->
-	<filter>
+<!-- 	<filter>
 		<filter-name>sitemesh</filter-name>
 		<filter-class>org.sitemesh.config.ConfigurableSiteMeshFilter</filter-class>
 	</filter>
 
 	<filter-mapping>
 		<filter-name>sitemesh</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> -->	
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
+	</filter>
+	<filter>
+		<description>
+		</description>
+		<display-name>AuthFilter</display-name>
+		<filter-name>AuthFilter</filter-name>
+		<filter-class>com.webstotales.ventasOnline.util.filter.AuthFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>AuthFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
@@ -58,7 +88,8 @@
 	</servlet-mapping>
 	<!-- DWR -->
 <display-name>Ventas Online</display-name>
-	<welcome-file-list>
-		<welcome-file></welcome-file>
-	</welcome-file-list>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+	
 </web-app>
