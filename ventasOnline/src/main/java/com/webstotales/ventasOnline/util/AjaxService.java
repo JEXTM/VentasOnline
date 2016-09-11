@@ -5,6 +5,7 @@ package com.webstotales.ventasOnline.util;
 
 import java.util.List;
 
+import com.webstotales.ventasOnline.domain.Pedido;
 import com.webstotales.ventasOnline.domain.model.Detalle_Pedido_Model;
 
 /**
@@ -15,4 +16,5 @@ public interface AjaxService {
 	public int getOne();
 	public Long getPedEstadoCount(Character estado);
 	public List<Detalle_Pedido_Model> getDetallePedido(Integer idPedido);
+	public List<Pedido> getPedidoByEstado(Character estado);
 }

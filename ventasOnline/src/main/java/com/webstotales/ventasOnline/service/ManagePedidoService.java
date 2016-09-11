@@ -33,5 +33,8 @@ public class ManagePedidoService{
 	public List<Pedido> getByEstado(Character estado){
 		return pedidoRepository.getByEstado(estado);
 	}
-	
+	@Transactional(readOnly=true)
+	public Pedido findById(Integer id){
+		return pedidoRepository.findOne(id);
+	}
 }

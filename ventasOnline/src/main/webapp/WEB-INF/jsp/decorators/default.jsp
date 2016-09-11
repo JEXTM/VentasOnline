@@ -26,7 +26,7 @@
                 <div class="navi">
                     <ul>
                         <li><a href="<c:url value="/"/>"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
-                        <li><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Workflow</span></a></li>
+                        <li><a href="<c:url value="/mPedido?estado=I"/>"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Pedidos</span></a></li>
                         <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Statistics</span></a></li>
                         <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Calender</span></a></li>
                         <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Users</span></a></li>
@@ -49,9 +49,9 @@
                                     </button>
                                 </div>
                             </nav>
-<!--                             <div class="search hidden-xs hidden-sm">
-                                <input type="text" placeholder="Search" id="search">
-                            </div> -->
+                          <div class="search hidden-xs hidden-sm">
+                                <input type="text" placeholder="Buscar Pedido" id="searchPedido" onkeydown="validar(this)">
+                            </div> 
                         </div>
                         <div class="col-md-5">
                             <div class="header-rightside">
@@ -149,6 +149,14 @@
 		}
 	});
 	}
+	function validar(elemento){
+		$(elemento).keypress(function(e) {
+		    if(e.which == 13) {
+		    	window.location.href = '<c:url value="/BuscarPedido?codigo="/>'+$("#searchPedido").val();
+		    }
+		});
+	}
+
 	setInterval('getEstado()', 5000);
 	</script>
 </body>

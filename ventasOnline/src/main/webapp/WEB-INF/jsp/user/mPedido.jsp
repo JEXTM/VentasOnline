@@ -5,40 +5,78 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Pedidos</title>
+<title>Maestro Pedidos</title>
 </head>
 <body>
-
-
-<div class="table-responsive">
-<br>
-<br>
-<br>
-  <table class="table table-bordered table-hover">
-  	<thead>
-  		<tr>
-  			<td>Codigo</td>
-  			<td>Cliente</td>
-  			<td>Fecha</td>
-  			<td>Detalle</td>
-  			<td>Generar Comprobante</td>
-  		</tr>
-  	</thead>
-  	<tbody>
- 	  	<c:forEach items="${pedidos}" var="pedido">
- 	  		<tr>
-  			 	<td><c:out value="${pedido.idPedido}"/></td>
-  			 	<td><c:out value="${pedido.idCliente.nombre}"/> <c:out value="${pedido.idCliente.apellido}"/></td>
-  			 	<td><c:out value="${pedido.fecha}"/></td>
-  			 	<td><button class="btn btn-primary btn-block" onclick="verDetalle(<c:out value="${pedido.idPedido}"/>)" data-toggle="modal" data-target="#detalle_ped">Ver Detalle</button></td>
-  			 	<td><a  class="btn btn-info btn-block" href="<c:url value="/pedidoComprobante?pedido=${pedido.idPedido}"/>">Generar Comprobante</a></td>
-  			 </tr>
-		</c:forEach>
-  	</tbody>
-  </table>
-</div>
-
-    <div id="detalle_ped" class="modal fade" role="dialog">
+	<c:if test="${not empty mPedido }">
+		
+	</c:if>
+	<c:if test="${not empty select }">
+	<br>
+	<br>
+	<select class="form-control" id="estadoProceso" onchange="return getEstados(this)">
+		<option value="0">--Seleccione--</option>
+		<option value="I">Ingresado</option>
+		<option value="P">En Proceso</option>
+		<option value="T">Terminado</option>
+		<option value="C">Cancelado</option>
+	</select>
+	<br>
+	<br>
+	
+	<table class="table table-hover">
+		<thead>  
+			<tr>			
+				<td>Codigo</td>
+  				<td>Cliente</td>
+  				<td>Fecha</td>
+  				<td>Detalle</td>
+  				<td>Generar Comprobante</td>
+  			</tr>
+  		</thead>
+		<tbody id="tbody">
+	 	  	<c:forEach items="${pedidos}" var="pedido">
+	 	  		<tr>
+	  			 	<td><c:out value="${pedido.idPedido}"/></td>
+	  			 	<td><c:out value="${pedido.idCliente.nombre}"/> <c:out value="${pedido.idCliente.apellido}"/></td>
+	  			 	<td><c:out value="${pedido.fecha}"/></td>
+	  			 	<td><button class="btn btn-primary btn-block" onclick="verDetalle(<c:out value="${pedido.idPedido}"/>)" data-toggle="modal" data-target="#detalle_ped">Ver Detalle</button></td>
+	  			 	<td><a  class="btn btn-info btn-block" href="<c:url value="/pedidoComprobante?pedido=${pedido.idPedido}"/>">Generar Comprobante</a></td>
+	  			 </tr>
+			</c:forEach>
+		</tbody>
+	</table>
+	</c:if>
+	<c:if test="${not empty pedido }">
+	<br>
+	<br>
+			<table class="table table-hover">
+		<thead>  
+			<tr>			
+				<td>Codigo</td>
+  				<td>Cliente</td>
+  				<td>Fecha</td>
+  				<td>Detalle</td>
+  				<td>Generar Comprobante</td>
+  			</tr>
+  		</thead>
+		<tbody id="tbody">
+	 	  		<tr>
+	  			 	<td><c:out value="${pedido.idPedido}"/></td>
+	  			 	<td><c:out value="${pedido.idCliente.nombre}"/> <c:out value="${pedido.idCliente.apellido}"/></td>
+	  			 	<td><c:out value="${pedido.fecha}"/></td>
+	  			 	<td><button class="btn btn-primary btn-block" onclick="verDetalle(<c:out value="${pedido.idPedido}"/>)" data-toggle="modal" data-target="#detalle_ped">Ver Detalle</button></td>
+	  			 	<td><a  class="btn btn-info btn-block" href="<c:url value="/pedidoComprobante?pedido=${pedido.idPedido}"/>">Generar Comprobante</a></td>
+	  			 </tr>
+		</tbody>
+	</table>	
+	</c:if>
+	<c:if test="${not empty mensaje }">
+		<br>
+		<br>
+		<p class="alert alert-danger text-center"><b><c:out value="${mensaje}"/></b></p>	
+	</c:if>
+	    <div id="detalle_ped" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -68,10 +106,22 @@
 
         </div>
     </div>
-
-
-<script>
-function verDetalle(id){
+	
+	
+	
+	<script type="text/javascript">
+		function getEstados(estado){
+			if(estado!=0)window.location.href = '<c:url value="/mPedido?estado="/>'+estado.value;
+		}
+/*		ajax.getpedidobyestado("i",function(data){
+			$("tbody").children().remove();
+			for(var i=0;i<data.length;i++){
+				$("#tbody").append('<tr><td>'+data[i][0]+'<td></tr>');
+			}
+		});
+	} */
+	
+	function verDetalle(id){
 		ajax.getDetallePedido(id,function(data){
 			if(data.length==0){
 				dwr.util.setValue('pedidoId', 'Lo sentimos Su Consulta No Pudo Realizarse');
@@ -94,8 +144,7 @@ function verDetalle(id){
 				}
 			}
 		});
-}
-
-</script>
+	}
+	</script>
 </body>
 </html>
