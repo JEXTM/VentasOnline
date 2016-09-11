@@ -3,159 +3,153 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>
 <html>
-  <head>
-    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-    <script src='<c:url value="dwr/engine.js"/>'></script>
-	<script src='<c:url value="dwr/interface/ajax.js"/>'></script>
-    <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet" type="text/css" />    
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />    
-    <link href="<c:url value="/resources/css/AdminLTE.min.css" />" rel="stylesheet" type="text/css" />
-    <link href="<c:url value="/resources/css/skins/_all-skins.min.css" />" rel="stylesheet" type="text/css" />
-    <link href="<c:url value="/resources/plugins/iCheck/flat/blue.css" />" rel="stylesheet" type="text/css" />
-    <link href="<c:url value="/resources/plugins/morris/morris.css" />" rel="stylesheet" type="text/css" />
-    <link href="<c:url value="/resources/plugins/jvectormap/jquery-jvectormap-1.2.2.css" />" rel="stylesheet" type="text/css" />
-    <link href="<c:url value="/resources/plugins/datepicker/datepicker3.css" />" rel="stylesheet" type="text/css" />    
-    <link href="<c:url value="/resources/plugins/daterangepicker/daterangepicker-bs3.css" />" rel="stylesheet" type="text/css" />
-    <link href="<c:url value="/resources/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" />" rel="stylesheet" type="text/css" />
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-    <title>Sistema de Ventas Online <decorator:title/></title>
-    <decorator:head/>
-  </head>
-  <body class="skin-blue">
-<%if(request.getAttribute("j_user")==null || request.getAttribute("j_user").equals(null)){
-		request.getRequestDispatcher("/login").forward(request, response);
-	} %>
-    <decorator:body/>
-    
-	    <div class="wrapper">
-      
-      <header class="main-header">
-        <!-- Logo -->
-        <a href="<c:url value="/admin" />" class="logo"><b>Comida Saludable</b></a>
-        <!-- Header Navbar: style can be found in header.less -->
-        <nav class="navbar navbar-static-top" role="navigation">
-          <!-- Sidebar toggle button-->
-          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-            <span class="sr-only">Toggle navigation</span>
-          </a>
-          <div class="navbar-custom-menu">
-            <ul class="nav navbar-nav">
-              <!-- Messages: style can be found in dropdown.less-->
-              
-              <!-- Notifications: style can be found in dropdown.less -->
-              
-              <!-- Tasks: style can be found in dropdown.less -->
-              
-              <!-- User Account: style can be found in dropdown.less -->
-            </ul>
-          </div>
-        </nav>
-      </header>
-      <!-- Left side column. contains the logo and sidebar -->
-      <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-          <!-- Sidebar user panel -->
-          <div class="user-panel">
-            <div class="pull-left image">
-            <img src="<c:url value="/resources/img/flores.jpg" />"/>
-              
-            </div>
-            <div class="pull-left info">
-              <p>Jorge Flores Flores</p>
+<head>
 
-              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
-          </div>
-          <!-- sidebar menu: : style can be found in sidebar.less -->
-          <ul class="sidebar-menu">                           
-                        <li><a href="<c:url value="/clientes" />"><i class="fa fa-user"></i> XXXXXXXXX</a></li>
-                        <li><a href="<c:url value="/rutas" />"><i class="fa fa-users"></i> XXXXXXX</a></li>
-                        <!-- <li><a href="<c:url value="/ventas" />"><i class="fa fa-bar-chart"></i> xxxxxxxxxx</li>-->
-                        <!-- <li><a href="<c:url value="/ventars" />"><i class="fa fa-bar-chart"></i> xxxxxxxxxxx</a></li>-->
-                        <li><a href="<c:url value="/vendedores" />"><i class="fa fa-users"></i> XXXXXXXXXXXXXXX</a></li>
-                        <li><a href="<c:url value="/choferes" />"><i class="fa fa-users"></i> XXXXXXXXXXXXXXXXXXXXX</a></li>
-                        <li><a href="<c:url value="/modelos" />"><i class="fa fa-car"></i> XXXXXXXXXXXXXXXXXX</a></li>
-                        <li><a href="<c:url value="/vendedores1" />"><i class="fa fa-users"></i> XXXXXXXXXXXXXXXXXXXxxx</a></li>
-                        <li><a href="<c:url value="/modelos1" />"><i class="fa fa-car"></i> XXXXXXXXXXXXXXXXXXXxxxx</a></li>   
-                        <li><a href="<c:url value="/j_spring_security_logout" />"><i class="fa fa-sign-out"></i> XXXXXXXXXX</a></li>                 
-                                      
+<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+<script src='<c:url value="dwr/engine.js"/>'></script>
+<script src='<c:url value="dwr/interface/ajax.js"/>'></script>
+<script src='<c:url value="dwr/util.js"/>'></script>
+<link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet" type="text/css" />
+<link href="<c:url value="/resources/css/default/default.css"/>"  rel="stylesheet" type="text/css" />
+<title>Sistema de Ventas Online <decorator:title/></title>
+</head>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+<body class="home" onload="getEstado()">
+    <div class="container-fluid display-table">
+        <div class="row display-table-row">
+            <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
+                <div class="logo">
+                    <a href="<c:url value="/"/>"><img src="http://logo222.com/wp-content/uploads/2014/11/Logo1016D.png" alt="merkery_logo" class="hidden-xs hidden-sm">
+                        <!-- <img src="http://kingofwallpapers.com/circle/circle-003.jpg" alt="merkery_logo" class="visible-xs visible-sm circle-logo"> -->
+                    </a>
+                </div>
+                <div class="navi">
+                    <ul>
+                        <li><a href="<c:url value="/"/>"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
+                        <li><a href="#"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Workflow</span></a></li>
+                        <li><a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Statistics</span></a></li>
+                        <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Calender</span></a></li>
+                        <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Users</span></a></li>
+                        <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Setting</span></a></li>
                     </ul>
-        </section>
-        <!-- /.sidebar -->
-      </aside>
-
-      <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-                    <div >
-                        <img src="<c:url value="/resources/img/be.gif" />" height="42" width="42" />
+                </div>
+            </div>
+            <div class="col-md-10 col-sm-11 display-table-cell v-align">
+                <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
+                <div class="row">
+                    <header>
+                        <div class="col-md-7">
+                            <nav class="navbar-default pull-left">
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="offcanvas" data-target="#side-menu" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                </div>
+                            </nav>
+<!--                             <div class="search hidden-xs hidden-sm">
+                                <input type="text" placeholder="Search" id="search">
+                            </div> -->
+                        </div>
+                        <div class="col-md-5">
+                            <div class="header-rightside">
+                                <ul class="list-inline header-top pull-right">
+                                    <!-- <li class="hidden-xs"><a href="#" class="add-project" data-toggle="modal" data-target="#add_project">Add Project</a></li> -->
+                                    <li>
+                                    	<a href="<c:url value="/pedidos"/>" class="icon-info">
+                                    		<i class="fa fa-rocket" aria-hidden="true"></i>
+                                    		<span class="label label-primary" id="idPedido">0</span>
+                                    	</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="icon-info">
+                                            <i class="fa fa-bell" aria-hidden="true"></i>
+                                            <span class="label label-primary">0</span>
+                                        </a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<c:url value="/resources/img/Jorge Flores.jpg"/>" alt="user">
+                                            <b class="caret"></b></a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <div class="navbar-content">
+                                                    <span>Jorge Flores</span>
+                                                    <p class="text-muted small">
+                                                        jFloresF@comidasaludable.com
+                                                    </p>
+                                                    <div class="divider">
+                                                    </div>
+                                                    <a href="#" class="view btn-sm active">View Profile</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </header>
+                </div>
+                <div class="user-dashboard">
+                    
+                    <div class="row">
+						<decorator:body/>
                     </div>
-                    <h1>
-                        BUSES DE LIMA <small>-  XXXXXXXXXXXXXXX</small>
-                    </h1>
-                </section>
-
-        <!-- Main content -->
-        <section class="content">
-         
-
-        </section><!-- /.content -->
-      </div><!-- /.content-wrapper -->
-      <!-- <footer class="main-footer">
-        <div class="pull-right hidden-xs">
+                </div>
+            </div>
         </div>
-        <strong>Copyright &copy; 2014-2015 <a href="#">BMW</a>.</strong> All rights reserved.
-      </footer> -->
-    </div><!-- ./wrapper -->    
+
+    </div>
+
+
+
+    <!-- Modal -->
+    <div id="add_project" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header login-header">
+                    <button type="button" class="close" data-dismiss="modal">X</button>
+                    <h4 class="modal-title">Add Project</h4>
+                </div>
+                <div class="modal-body">
+                            <input type="text" placeholder="Project Title" name="name">
+                            <input type="text" placeholder="Post of Post" name="mail">
+                            <input type="text" placeholder="Author" name="passsword">
+                            <textarea placeholder="Desicrption"></textarea>
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="cancel" data-dismiss="modal">Close</button>
+                    <button type="button" class="add-project" data-dismiss="modal">Save</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
     
-
-     <!-- jQuery 2.1.3 -->
-    <script src=<c:url value="/resources/plugins/jQuery/jQuery-2.1.3.min.js" /> type="text/javascript"></script>
-    <!-- jQuery UI 1.11.2 -->
-    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>
-    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>
-      $.widget.bridge('uibutton', $.ui.button);
-    </script>
-    <!-- Bootstrap 3.3.2 JS -->
-    <script src=<c:url value="/resources/js/bootstrap.min.js" /> type="text/javascript"></script>    
-    <!-- Morris.js charts -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script src=<c:url value="/resources/plugins/morris/morris.min.js" /> type="text/javascript"></script>
-    <!-- Sparkline -->
-    <script src=<c:url value="/resources/plugins/sparkline/jquery.sparkline.min.js" /> type="text/javascript"></script>
-    <!-- jvectormap -->
-    <script src=<c:url value="/resources/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" /> type="text/javascript"></script>
-    <script src=<c:url value="/resources/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" /> type="text/javascript"></script>
-    <!-- jQuery Knob Chart -->
-    <script src=<c:url value="/resources/plugins/knob/jquery.knob.js" /> type="text/javascript"></script>
-    <!-- daterangepicker -->
-    <script src=<c:url value="/resources/plugins/daterangepicker/daterangepicker.js" /> type="text/javascript"></script>
-    <!-- datepicker -->
-    <script src=<c:url value="/resources/plugins/datepicker/bootstrap-datepicker.js" /> type="text/javascript"></script>
-    <!-- Bootstrap WYSIHTML5 -->
-    <script src=<c:url value="/resources/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" /> type="text/javascript"></script>
-    <!-- iCheck -->
-    <script src=<c:url value="/resources/plugins/iCheck/icheck.min.js" /> type="text/javascript"></script>
-    <!-- Slimscroll -->
-    <script src=<c:url value="/resources/plugins/slimScroll/jquery.slimscroll.min.js" /> type="text/javascript"></script>
-    <!-- FastClick -->
-    <script src=<c:url value="/resources/plugins/fastclick/fastclick.min.js" /> type="text/javascript"></script>
-    <!-- AdminLTE App -->
-    <script src=<c:url value="/resources/dist/js/app.min.js" /> type="text/javascript"></script>
-
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src=<c:url value="/resources/dist/js/pages/dashboard.js" /> type="text/javascript"></script>
-
-    <!-- AdminLTE for demo purposes -->
-    <script src=<c:url value="/resources/dist/js/demo.js" /> type="text/javascript"></script>
-  </body>
+    
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" src='<c:url value="/resources/js/bootstrap.min.js"/>'></script>
+	<script>
+	$(document).ready(function(){
+		   $('[data-toggle="offcanvas"]').click(function(){
+		       $("#navigation").toggleClass("hidden-xs");
+		   });
+		});
+	
+	</script>
+	<script type="text/javascript">
+	function getEstado(){
+	ajax.getPedEstadoCount("I",function(data){
+		if(data>0){
+			$("#idPedido").text(data);
+			$("#idPedido").attr("class","label label-danger");
+		}
+	});
+	}
+	setInterval('getEstado()', 5000);
+	</script>
+</body>
 </html>

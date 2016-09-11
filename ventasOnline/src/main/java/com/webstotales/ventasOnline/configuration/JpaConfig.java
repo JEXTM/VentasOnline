@@ -53,7 +53,7 @@ public class JpaConfig implements DisposableBean{
 			lcemfb.setJpaVendorAdapter(va);
 			Properties ps = new Properties();
 			ps.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-			ps.put("hibernate.hbm2ddl.auto", "create-drop");
+			//ps.put("hibernate.hbm2ddl.auto", "create-drop");
 			ps.put("hibernate.show_sql", "true");
 			lcemfb.setJpaProperties(ps);
 			lcemfb.afterPropertiesSet();
