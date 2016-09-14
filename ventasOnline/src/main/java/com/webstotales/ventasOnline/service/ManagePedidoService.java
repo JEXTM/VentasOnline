@@ -3,13 +3,16 @@
  */
 package com.webstotales.ventasOnline.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.webstotales.ventasOnline.domain.Pedido;
+import com.webstotales.ventasOnline.domain.model.Detalle_Pedido_Model;
 import com.webstotales.ventasOnline.domain.repository.PedidoRepository;
 
 /**
@@ -36,5 +39,13 @@ public class ManagePedidoService{
 	@Transactional(readOnly=true)
 	public Pedido findById(Integer id){
 		return pedidoRepository.findOne(id);
+	}
+	@Transactional(readOnly=true)
+	public List<Detalle_Pedido_Model>  getDetalle(Integer idPedido){
+		return pedidoRepository.getDetallePedido(idPedido);
+	}
+	@Transactional(readOnly=true)
+	public Vector<Detalle_Pedido_Model> getDetPedido(Integer idPedido){
+		return pedidoRepository.getDetPedido(idPedido);
 	}
 }

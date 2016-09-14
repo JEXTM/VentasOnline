@@ -3,6 +3,8 @@
  */
 package com.webstotales.ventasOnline.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.AssociationOverride;
 import javax.persistence.AssociationOverrides;
 import javax.persistence.Column;
@@ -24,7 +26,11 @@ import com.webstotales.ventasOnline.domain.ids.Detalle_PedidoId;
 		joinColumns = @JoinColumn(name = "idPedido")),
 	@AssociationOverride(name = "pk.comida",
 		joinColumns = @JoinColumn(name = "idComida")) })
-public class Detalle_Pedido {
+public class Detalle_Pedido implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8713339672050893997L;
 	/**
 	 * Generate By: JEXTM 9 set. 2016
 	 */
@@ -34,6 +40,7 @@ public class Detalle_Pedido {
 	private Integer unidades;
 	@Column(name="estado")
 	private boolean estado;
+
 	/**
 	 * @param pk
 	 * @param unidades
@@ -64,12 +71,20 @@ public class Detalle_Pedido {
 		this.estado = estado;
 	}
 	
+
 	/**
 	 * 
 	 */
 	public Detalle_Pedido() {
 		
 	}
+	/**
+	 * @param pk
+	 * @param unidades
+	 * @param estado
+	 * @param precio
+	 */
+
 	
 	
 }

@@ -18,6 +18,10 @@ import com.webstotales.ventasOnline.domain.Pedido;
 @Embeddable
 public class Detalle_PedidoId implements Serializable{
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 188532819030145833L;
+	/**
 	 * Generate By: JEXTM 9 set. 2016
 	 */
 	@ManyToOne

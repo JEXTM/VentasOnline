@@ -18,6 +18,10 @@ import com.webstotales.ventasOnline.domain.Ingrediente;
 @Embeddable
 public class IngredienteComidaId implements Serializable{
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8780210839780257148L;
+	/**
 	 * Generate By: JEXTM 5 set. 2016
 	 */
 	@ManyToOne
