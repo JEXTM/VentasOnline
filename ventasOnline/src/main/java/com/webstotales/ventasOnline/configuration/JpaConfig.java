@@ -31,6 +31,9 @@ public class JpaConfig implements DisposableBean{
 	    private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3306/ventasOnline";
 	    private static final String PROPERTY_NAME_DATABASE_USERNAME = "JEXTM";
 	    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "jextm";
+//	 	private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3307/juanpere121212?autoReconnect=true";
+//	 	private static final String PROPERTY_NAME_DATABASE_USERNAME = "juanpere121212";
+//	    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "jextm0424";
 	    		
 	    
 	    @Bean(name="driverDatasource")

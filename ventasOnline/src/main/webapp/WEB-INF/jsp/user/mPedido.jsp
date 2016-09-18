@@ -14,13 +14,16 @@
 	<c:if test="${not empty select }">
 	<br>
 	<br>
-	<select class="form-control" id="estadoProceso" onchange="return getEstados(this)">
-		<option value="0">--Seleccione--</option>
-		<option value="I">Ingresado</option>
-		<option value="P">En Proceso</option>
-		<option value="T">Terminado</option>
-		<option value="C">Cancelado</option>
-	</select>
+	<div class="col-md-4"></div>
+	<div class="col-md-4">
+		<select class="form-control" id="estadoProceso" onchange="return getEstados(this)">
+			<option value="0">--Seleccione--</option>
+			<option value="I">Ingresado</option>
+			<option value="P">En Proceso</option>
+			<option value="T">Terminado</option>
+			<option value="C">Cancelado</option>
+		</select>
+	</div>
 	<br>
 	<br>
 	
@@ -71,11 +74,7 @@
 		</tbody>
 	</table>	
 	</c:if>
-	<c:if test="${not empty mensaje }">
-		<br>
-		<br>
-		<p class="alert alert-danger text-center"><b><c:out value="${mensaje}"/></b></p>	
-	</c:if>
+
 	    <div id="detalle_ped" class="modal fade" role="dialog">
         <div class="modal-dialog">
 

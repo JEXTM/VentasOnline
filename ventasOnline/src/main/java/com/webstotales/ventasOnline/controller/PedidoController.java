@@ -5,12 +5,8 @@ package com.webstotales.ventasOnline.controller;
 
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Vector;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,7 +20,6 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.webstotales.ventasOnline.domain.Detalle_Pedido;
-import com.webstotales.ventasOnline.domain.model.Detalle_Pedido_Model;
 import com.webstotales.ventasOnline.service.ManageDetalle_PedidoService;
 import com.webstotales.ventasOnline.service.ManagePedidoService;
 
@@ -96,11 +91,16 @@ public class PedidoController {
 	            document.add(new Paragraph("Nombre\t			: "+ pedido.get(0).getPk().getPedido().getIdCliente().getNombre()+", "+pedido.get(0).getPk().getPedido().getIdCliente().getApellido()));
 	            document.add(new Paragraph("Fecha De Pedido\t	: "+ pedido.get(0).getPk().getPedido().getFecha()));
 	            document.add(new Paragraph("---------DETALLE---------"));
-	            for(int i=0;i<pedido.size();i++){
-	            	document.add(new Paragraph("Plato\t		: "+ pedido.get(i).getPk().getComida().getNombre()));
-	            	document.add(new Paragraph("Cantidad\t	: "+ pedido.get(i).getUnidades()));
-	            	document.add(new Paragraph("Precio\t		: S/"+ pedido.get(i).getPk().getComida().getPrecio()));
-	            }
+//	            for(int i=0;i<pedido.size();i++){
+//	            	document.add(new Paragraph("Plato\t		: "+ pedido.get(i).getPk().getComida().getNombre()));
+//	            	document.add(new Paragraph("Cantidad\t	: "+ pedido.get(i).getUnidades()));
+//	            	document.add(new Paragraph("Precio\t		: S/"+ pedido.get(i).getPk().getComida().getPrecio()));
+//	            }
+	            for (Detalle_Pedido detalle_Pedido : pedido) {
+	            	document.add(new Paragraph("Plato\t		: "+ detalle_Pedido.getPk().getComida().getNombre()));
+	            	document.add(new Paragraph("Cantidad\t	: "+ detalle_Pedido.getUnidades()));
+	            	document.add(new Paragraph("Precio\t		: S/"+ detalle_Pedido.getPk().getComida().getPrecio()));
+				}
 	            document.add(new Paragraph("---------IMPORTE---------"));
 	            document.add(new Paragraph("Total de Pedido\t	: S/"+ pedido.get(0).getPk().getPedido().getImporte()));
 	            document.add(new Paragraph("Generado el\t		: "+new Date().toString()));

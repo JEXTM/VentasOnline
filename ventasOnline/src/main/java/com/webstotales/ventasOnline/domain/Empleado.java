@@ -42,14 +42,18 @@ public class Empleado extends Users{
 	 * @param username
 	 * @param password
 	 * @param estado
+	 * @param role
 	 * @param nombre
 	 * @param apellido
 	 * @param direccion
+	 * @param url
+	 * @param sexo
 	 * @param cargo
 	 */
-	public Empleado(Integer idUsuario, String username, String password, Character estado, String nombre,
-			String apellido, String direccion, String cargo) {
-		super(idUsuario, username, password, estado, nombre, apellido, direccion);
+	public Empleado(Integer idUsuario, String username, String password, Character estado, Character role,
+			String nombre, String apellido, String direccion, String url, Character sexo, String cargo) {
+		super(idUsuario, username, password, estado, role, nombre, apellido, direccion, url, sexo);
 		this.cargo = cargo;
 	}
+	
 }

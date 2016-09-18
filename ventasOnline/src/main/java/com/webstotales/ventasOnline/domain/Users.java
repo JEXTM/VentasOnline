@@ -6,6 +6,8 @@ package com.webstotales.ventasOnline.domain;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import static javax.persistence.InheritanceType.JOINED;
@@ -24,6 +26,7 @@ public class Users {
 	 * Generate By: JEXTM 4 set. 2016
 	 */
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer idUsuario;
 	@Column(name="username", nullable=false, unique=true)
 	private String username;
@@ -41,6 +44,8 @@ public class Users {
 	private String direccion;
 	@Column(name="url", nullable=true)
 	private String url;
+	@Column(name="sexo", nullable=false)
+	private Character sexo;
 	public Integer getIdUsuario() {
 		return idUsuario;
 	}
@@ -90,57 +95,46 @@ public class Users {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	/**
-	 * @param idUsuario
-	 * @param username
-	 * @param password
-	 * @param estado
-	 * @param nombre
-	 * @param apellido
-	 * @param direccion
-	 */
-	public Users(Integer idUsuario, String username, String password, Character estado, String nombre, String apellido,
-			String direccion) {
-		super();
-		this.idUsuario = idUsuario;
-		this.username = username;
-		this.password = password;
-		this.estado = estado;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.direccion = direccion;
+	public Character getRole() {
+		return role;
 	}
-	
-	
-	/**
-	 * 
-	 */
-	public Users() {
-		// TODO Auto-generated constructor stub
+	public void setRole(Character role) {
+		this.role = role;
+	}
+	public Character getSexo() {
+		return sexo;
+	}
+	public void setSexo(Character sexo) {
+		this.sexo = sexo;
 	}
 	/**
 	 * @param idUsuario
 	 * @param username
 	 * @param password
 	 * @param estado
+	 * @param role
 	 * @param nombre
 	 * @param apellido
 	 * @param direccion
 	 * @param url
+	 * @param sexo
 	 */
-	public Users(Integer idUsuario, String username, String password, Character estado, String nombre, String apellido,
-			String direccion, String url) {
+	public Users(Integer idUsuario, String username, String password, Character estado, Character role, String nombre,
+			String apellido, String direccion, String url, Character sexo) {
 		super();
 		this.idUsuario = idUsuario;
 		this.username = username;
 		this.password = password;
 		this.estado = estado;
+		this.role = role;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.direccion = direccion;
 		this.url = url;
+		this.sexo = sexo;
 	}
-	
-	
+	public Users() {
+		// TODO Auto-generated constructor stub
+	}
 
 }
