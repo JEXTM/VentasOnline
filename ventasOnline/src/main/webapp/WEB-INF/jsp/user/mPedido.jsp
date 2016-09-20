@@ -50,9 +50,10 @@
 		</tbody>
 	</table>
 	</c:if>
-	<c:if test="${not empty pedido }">
+	<c:if test="${not empty pedido}">
 	<br>
 	<br>
+
 			<table class="table table-hover">
 		<thead>  
 			<tr>			
@@ -64,13 +65,15 @@
   			</tr>
   		</thead>
 		<tbody id="tbody">
-	 	  		<tr>
-	  			 	<td><c:out value="${pedido.idPedido}"/></td>
-	  			 	<td><c:out value="${pedido.idCliente.nombre}"/> <c:out value="${pedido.idCliente.apellido}"/></td>
-	  			 	<td><c:out value="${pedido.fecha}"/></td>
-	  			 	<td><button class="btn btn-primary btn-block" onclick="verDetalle(<c:out value="${pedido.idPedido}"/>)" data-toggle="modal" data-target="#detalle_ped">Ver Detalle</button></td>
-	  			 	<td><a  class="btn btn-info btn-block" href="<c:url value="/downloadPdf?pedido=${pedido.idPedido}"/>">Generar Comprobante</a></td>
-	  			 </tr>
+	  			 <c:forEach items="${pedido}" var="pedido">
+		  			 <tr>
+		  			 	<td><c:out value="${pedido.idPedido}"/></td>
+		  			 	<td><c:out value="${pedido.idCliente.nombre}"/> <c:out value="${pedido.idCliente.apellido}"/></td>
+		  			 	<td><c:out value="${pedido.fecha}"/></td>
+		  			 	<td><button class="btn btn-primary btn-block" onclick="verDetalle(<c:out value="${pedido.idPedido}"/>)" data-toggle="modal" data-target="#detalle_ped">Ver Detalle</button></td>
+		  			 	<td><a  class="btn btn-info btn-block" href="<c:url value="/downloadPdf?pedido=${pedido.idPedido}"/>">Generar Comprobante</a></td>
+		  			 </tr>
+	  			 </c:forEach>
 		</tbody>
 	</table>	
 	</c:if>

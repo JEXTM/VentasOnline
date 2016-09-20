@@ -27,5 +27,9 @@ public interface PedidoRepository extends JpaRepository<Pedido, Integer>{
 	List<Detalle_Pedido_Model> getDetallePedido(Integer idPedido);
 	@Query("select pe.idPedido, usu.nombre, usu.apellido, usu.direccion, pe.fecha, pe.estado, co.nombre, dp.unidades, co.precio,pe.importe from Pedido pe, Users usu, Detalle_Pedido dp, Comida co where pe.idCliente = usu.idUsuario  and pe.idPedido = dp.pk.pedido and dp.pk.comida = co.idComida and pe.idPedido=?1")
 	Vector<Detalle_Pedido_Model> getDetPedido(Integer idPedido);
+	@Query("select u from Pedido u where u.idCliente.nombre like ?1 or u.idCliente.apellido like ?2")
+	List<Pedido> findByName(String nombre, String apellido);
+	@Query("select u from Pedido u where u.idPedido = ?1")
+	List<Pedido> finByIdC(Integer idPedido);
 }
 

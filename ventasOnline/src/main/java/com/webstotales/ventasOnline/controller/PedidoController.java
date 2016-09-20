@@ -53,13 +53,15 @@ public class PedidoController {
 	@RequestMapping(value="/BuscarPedido")
 	public ModelAndView search(HttpServletRequest request){
 		int id=0;
+		ModelAndView model = new ModelAndView("/user/mPedido");
 		try{
 		id = Integer.parseInt(request.getParameter("codigo"));
+		model.addObject("pedido", maPedidos.finByIdC(id));
 		}catch(NumberFormatException e){
-			System.out.println("Error: "+e.getMessage());
+			model.addObject("pedido", maPedidos.findByName("%"+request.getParameter("codigo")+"%"));
 		}
-		ModelAndView model = new ModelAndView("/user/mPedido","pedido",maPedidos.findById(id));
-		if (maPedidos.findById(id)==null) {
+		System.out.println(model.getModel().get("pedido").toString());
+		if (model.getModel().get("pedido").toString().endsWith("[]")) {
 			model.addObject("mensaje", "No se Encontraron Resultados");
 		}
 		return model;

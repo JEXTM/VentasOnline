@@ -48,4 +48,12 @@ public class ManagePedidoService{
 	public Vector<Detalle_Pedido_Model> getDetPedido(Integer idPedido){
 		return pedidoRepository.getDetPedido(idPedido);
 	}
+	@Transactional(readOnly=true)
+	public List<Pedido> findByName(String  nombre){
+		return pedidoRepository.findByName(nombre,nombre);
+	}
+	@Transactional(readOnly=true)
+	public List<Pedido> finByIdC(Integer idPedido){
+		return pedidoRepository.finByIdC(idPedido);
+	}
 }
