@@ -67,6 +67,11 @@ public class PedidoController {
 		return model;
 	}
 	
+	@RequestMapping(value="/ePedido")
+	public ModelAndView estadoPedido(){
+		return new ModelAndView("/user/ePedido","pedidos",maPedidos.findAll());
+	}
+	
 	@RequestMapping(value="/downloadPdf")
 	public String pdfDownload2(HttpServletRequest request, HttpServletResponse response){
 		response.setContentType("application/pdf");

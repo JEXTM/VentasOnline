@@ -7,8 +7,10 @@ import java.util.List;
 import java.util.Vector;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.webstotales.ventasOnline.domain.Pedido;
 import com.webstotales.ventasOnline.domain.model.Detalle_Pedido_Model;
@@ -31,5 +33,9 @@ public interface PedidoRepository extends JpaRepository<Pedido, Integer>{
 	List<Pedido> findByName(String nombre, String apellido);
 	@Query("select u from Pedido u where u.idPedido = ?1")
 	List<Pedido> finByIdC(Integer idPedido);
+	@Transactional
+	@Modifying
+	@Query("update Pedido set estado=?1 where idPedido = ?2")
+	Integer updateEstado(Character estado, Integer idPedido);
 }
 

@@ -61,5 +61,9 @@ public class AjaxServiceImpl implements AjaxService{
 	public List<Pedido> getPedidoByEstado(Character estado) {
 		return pedidoRepository.getByEstado(estado);
 	}
+	@Transactional
+	public Integer updateEstado(Character estado, Integer idPedido){
+		return pedidoRepository.updateEstado(estado, idPedido);
+	}
 	
 }

@@ -56,4 +56,9 @@ public class ManagePedidoService{
 	public List<Pedido> finByIdC(Integer idPedido){
 		return pedidoRepository.finByIdC(idPedido);
 	}
+	@Transactional(readOnly=true)
+	public List<Pedido> findAll(){
+		return pedidoRepository.findAll();
+	}
+
 }
