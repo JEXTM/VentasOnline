@@ -11,6 +11,8 @@
 <script src='<c:url value="dwr/util.js"/>'></script>
 <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet" type="text/css" />
 <link href="<c:url value="/resources/css/default/default.css"/>"  rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+<decorator:head/>
 <title>Sistema de Ventas Online <decorator:title/></title>
 </head>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
@@ -29,7 +31,7 @@
                         <li><a href="<c:url value="/mPedido?estado=I"/>"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Pedidos</span></a></li>
                         <li><a href="<c:url value="/client"/>"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Cliente</span></a></li>
                         <li><a href="<c:url value="/ePedido"/>"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Estados</span></a></li>
-                        <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Users</span></a></li>
+                        <li><a href="<c:url value="/eClient"/>"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Lista de Usuarios</span></a></li>
                         <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Setting</span></a></li>
                     </ul>
                 </div>
@@ -134,7 +136,9 @@
     
     
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src='<c:url value="/resources/js/bootstrap.min.js"/>'></script>
+    <script type="text/javascript" src='<c:url value="/resources/js/dataTables.bootstrap.min.js"/>'></script>
 	<script>
 	$(document).ready(function(){
 		   $('[data-toggle="offcanvas"]').click(function(){
@@ -162,9 +166,9 @@
 
 	setInterval('getEstado()', 5000);
 	
-/* 	$(document).ready(function() {
+	$(document).ready(function() {
 	    $('#dataTable').DataTable();
-	} ); */
+	} );
 
 	</script>
 </body>

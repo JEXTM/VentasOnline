@@ -53,4 +53,8 @@ public class ClienteController {
 		model.addObject("mensaje", "Se Agrego Correctamente");
 		return model;
 	}
+	@RequestMapping(value="/eClient", method=RequestMethod.GET)
+	public ModelAndView estadoClientes(){
+		return new ModelAndView("user/eUsers","clientes",maClientservice.getAll());
+	}
 }
