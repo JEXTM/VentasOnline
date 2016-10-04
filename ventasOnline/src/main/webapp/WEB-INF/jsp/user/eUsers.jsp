@@ -35,8 +35,8 @@
 			</c:choose>
 				<tr class="<c:out value="${color }"/>">
 					<td><c:out value="${cliente.idUsuario}"/></td>
-					<td><c:out value="${cliente.username}"/></td>
-					<td><c:out value="${cliente.nombre}"/> <c:out value="${cliente.apellido}"/></td>
+					<td><c:out value="${cliente.usuario}"/></td>
+					<td><c:out value="${cliente.nombre}"/> <c:out value="${cliente.apellidoPat}"/> <c:out value="${cliente.apellidoMat}"/></td>
 					<td><c:out value="${cliente.estado}"/></td>
 					<td><c:out value="${cliente.sexo}"/></td>
 					<td><c:out value="${cliente.idmc}"/></td>

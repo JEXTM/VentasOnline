@@ -9,8 +9,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.webstotales.ventasOnline.domain.Carrito;
+import com.webstotales.ventasOnline.domain.EstadoPedido;
 import com.webstotales.ventasOnline.domain.Pedido;
 import com.webstotales.ventasOnline.domain.model.Detalle_Pedido_Model;
+import com.webstotales.ventasOnline.domain.repository.CarritoRepository;
 import com.webstotales.ventasOnline.domain.repository.PedidoRepository;
 import com.webstotales.ventasOnline.util.AjaxService;
 
@@ -22,6 +25,8 @@ public class AjaxServiceImpl implements AjaxService{
 	@Autowired
 	PedidoRepository pedidoRepository;
 	
+	@Autowired
+	CarritoRepository carritoRepository;
 	/* 
 	 * Descripcion: 
 	 *	@param :
@@ -40,17 +45,31 @@ public class AjaxServiceImpl implements AjaxService{
 	 */
 	@Override
 	@Transactional(readOnly=true)
-	public Long getPedEstadoCount(Character estado) {
+	public Long getPedEstadoCount(Integer estado) {
 		return pedidoRepository.getEstadoCount(estado);
 	}
 	/* 
 	 * Descripcion: 
 	 *	@param :
 	 */
+//	@Override
+//	@Transactional(readOnly=true)
+//	public List<Detalle_Pedido_Model> getDetallePedido(Integer idPedido) {
+//		return pedidoRepository.getDetallePedido(idPedido);
+//	}
+	/* 
+	 * Descripcion: 
+	 *	@param :
+	 */
 	@Override
 	@Transactional(readOnly=true)
-	public List<Detalle_Pedido_Model> getDetallePedido(Integer idPedido) {
-		return pedidoRepository.getDetallePedido(idPedido);
+	public List<Pedido> getPedidoByEstado(Integer estado) {
+		return pedidoRepository.getByEstado(estado);
+	}
+	@Transactional
+	public Integer updateEstado(Integer estado, Integer idPedido){
+		
+		return pedidoRepository.updateEstado(new EstadoPedido(estado, ""), idPedido);
 	}
 	/* 
 	 * Descripcion: 
@@ -58,12 +77,19 @@ public class AjaxServiceImpl implements AjaxService{
 	 */
 	@Override
 	@Transactional(readOnly=true)
-	public List<Pedido> getPedidoByEstado(Character estado) {
-		return pedidoRepository.getByEstado(estado);
+	public Long countByUsuario(Integer idUsuario) {
+		// TODO Auto-generated method stub
+		return carritoRepository.countById(idUsuario);
 	}
+	/* 
+	 * Descripcion: 
+	 *	@param :
+	 */
+	@Override
 	@Transactional
-	public Integer updateEstado(Character estado, Integer idPedido){
-		return pedidoRepository.updateEstado(estado, idPedido);
+	public void insertCarrito(Integer idUsuario, Integer idComida) {
+		Carrito carrito = new Carrito(idUsuario, idComida);
+		carritoRepository.saveAndFlush(carrito);
 	}
 	
 }

@@ -18,10 +18,10 @@
 				<form:input path="nombre" cssClass="form-control" required="required"/>
 			</div>
 			<div class="col-md-3">
-				<label for="apellido">Apellido</label>
+				<label for="apellido">Apellido Paterno</label>
 			</div>
 			<div class="col-md-3">
-				<form:input path="apellido" cssClass="form-control" required="required"/>
+				<form:input path="apellidoPat" cssClass="form-control" required="required"/>
 			</div>
 		</div>
 <br>
@@ -29,10 +29,10 @@
 <br>
 		<div class="form-group">
 			<div class="col-md-3">
-				<label for="direccion">Direccion</label>
+				<label for="direccion">Apellido Materno</label>
 			</div>
 			<div class="col-md-3">
-				<form:input path="direccion" cssClass="form-control" required="required" />
+				<form:input path="apellidoMat" cssClass="form-control" required="required" />
 			</div>
 			<div class="col-md-3">
 				<label for="dni">DNI</label>
@@ -48,13 +48,13 @@
 				<label for="email">Email</label>
 			</div>
 			<div class="col-md-3">
-				<form:input path="email" cssClass="form-control" required="required"/>
+				<form:input path="correo" cssClass="form-control" required="required"/>
 			</div>
 			<div class="col-md-3">
-				<label for="ocupacion">ocupacion</label>
+				<label for="direccion">Direccion</label>
 			</div>
 			<div class="col-md-3">
-				<form:input path="ocupacion" cssClass="form-control" required="required"/>
+				<form:input path="direccion" cssClass="form-control" required="required" />
 			</div>
 		</div>
 <br>
@@ -64,13 +64,13 @@
 				<label for="username">Usuario</label>
 			</div>
 			<div class="col-md-3">
-				<form:input path="username" cssClass="form-control" required="required"/>
+				<form:input path="usuario" cssClass="form-control" required="required"/>
 			</div>
 			<div class="col-md-3">
 				<label for="password">Contraseña</label>
 			</div>
 			<div class="col-md-3">
-				<form:input path="password" cssClass="form-control" required="required"/>
+				<form:input path="contrasena" cssClass="form-control" required="required"/>
 			</div>
 		</div>
 <br>

@@ -19,7 +19,9 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.webstotales.ventasOnline.domain.Comida;
 import com.webstotales.ventasOnline.domain.Detalle_Pedido;
+import com.webstotales.ventasOnline.service.ManageCarritoService;
 import com.webstotales.ventasOnline.service.ManageDetalle_PedidoService;
 import com.webstotales.ventasOnline.service.ManagePedidoService;
 
@@ -37,16 +39,23 @@ public class PedidoController {
 	ManagePedidoService maPedidos;
 	@Autowired
 	ManageDetalle_PedidoService maDetalle_PedidoService;
+	@Autowired
+	ManageCarritoService maCarritoService;
 	
 	@RequestMapping(value="/pedidos")
 	public ModelAndView index(){
-		ModelAndView model = new ModelAndView("/user/pedidos","pedidos", maPedidos.getByEstado('I'));
+		ModelAndView model = new ModelAndView("/user/pedidos","pedidos", maPedidos.getByEstado(1));
 		return model;
 	}
 	@RequestMapping(value="/mPedido")
 	public ModelAndView pedidos(HttpServletRequest request){
-		String estado = request.getParameter("estado");
-		ModelAndView model = new ModelAndView("/user/mPedido","pedidos",maPedidos.getByEstado(estado.charAt(0)));
+		int estado=1;
+		try{
+			estado = Integer.parseInt(request.getParameter("estado"));
+		}catch (NumberFormatException e) {
+			System.out.println("Error "+ e);
+		}
+		ModelAndView model = new ModelAndView("/user/mPedido","pedidos",maPedidos.getByEstado(estado));
 		model.addObject("select", estado);
 		return model;
 	}
@@ -95,7 +104,7 @@ public class PedidoController {
 	            // step 4
 
 	            document.add(new Paragraph("Codigo de Pedido\t : "+ pedido.get(0).getPk().getPedido().getIdPedido()));
-	            document.add(new Paragraph("Nombre\t			: "+ pedido.get(0).getPk().getPedido().getIdCliente().getNombre()+", "+pedido.get(0).getPk().getPedido().getIdCliente().getApellido()));
+	            document.add(new Paragraph("Nombre\t			: "+ pedido.get(0).getPk().getPedido().getUsuario().getNombre()+", "+pedido.get(0).getPk().getPedido().getUsuario().getApellidoPat()+" "+pedido.get(0).getPk().getPedido().getUsuario().getApellidoMat()));
 	            document.add(new Paragraph("Fecha De Pedido\t	: "+ pedido.get(0).getPk().getPedido().getFecha()));
 	            document.add(new Paragraph("---------DETALLE---------"));
 //	            for(int i=0;i<pedido.size();i++){
@@ -144,6 +153,11 @@ public class PedidoController {
 			System.out.println("Error : "+e.getMessage());
 		}
 		return null;
+	}
+	
+	@RequestMapping(value="/carrito")
+	public ModelAndView getCarrito(){
+		return new ModelAndView("/user/carrito","comidas",maCarritoService.findAll());
 	}
 
 }

@@ -32,6 +32,7 @@
                         <li><a href="<c:url value="/client"/>"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Cliente</span></a></li>
                         <li><a href="<c:url value="/ePedido"/>"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Estados</span></a></li>
                         <li><a href="<c:url value="/eClient"/>"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Lista de Usuarios</span></a></li>
+                         <li><a href="<c:url value="/platos"/>"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Platos</span></a></li>
                         <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Setting</span></a></li>
                     </ul>
                 </div>
@@ -68,7 +69,7 @@
                                     <li>
                                         <a href="#" class="icon-info">
                                             <i class="fa fa-bell" aria-hidden="true"></i>
-                                            <span class="label label-primary">0</span>
+                                            <span class="label label-primary" id="idCarrito">0</span>
                                         </a>
                                     </li>
                                     <li class="dropdown">
@@ -149,7 +150,7 @@
 	</script>
 	<script type="text/javascript">
 	function getEstado(){
-	ajax.getPedEstadoCount("I",function(data){
+	ajax.getPedEstadoCount(1,function(data){
 		if(data>0){
 			$("#idPedido").text(data);
 			$("#idPedido").attr("class","label label-danger");
@@ -163,8 +164,14 @@
 		    }
 		});
 	}
-
+	function getCarrito(){
+		ajax.countByUsuario(1,function(data){
+			$("#idCarrito").text(data);
+			$("#idCarrito").attr("class","label label-danger");
+		});
+	}
 	setInterval('getEstado()', 5000);
+	setInterval('getCarrito()', 5000);
 	
 	$(document).ready(function() {
 	    $('#dataTable').DataTable();

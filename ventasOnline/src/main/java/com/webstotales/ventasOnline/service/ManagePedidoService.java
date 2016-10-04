@@ -29,25 +29,25 @@ public class ManagePedidoService{
 	
 	@Transactional(readOnly=true)
 	public Long getIngresados(){
-		return pedidoRepository.getEstadoCount('I');
+		return pedidoRepository.getEstadoCount(1);
 	}
 	
 	@Transactional(readOnly=true)
-	public List<Pedido> getByEstado(Character estado){
+	public List<Pedido> getByEstado(Integer estado){
 		return pedidoRepository.getByEstado(estado);
 	}
 	@Transactional(readOnly=true)
 	public Pedido findById(Integer id){
 		return pedidoRepository.findOne(id);
 	}
-	@Transactional(readOnly=true)
-	public List<Detalle_Pedido_Model>  getDetalle(Integer idPedido){
-		return pedidoRepository.getDetallePedido(idPedido);
-	}
-	@Transactional(readOnly=true)
-	public Vector<Detalle_Pedido_Model> getDetPedido(Integer idPedido){
-		return pedidoRepository.getDetPedido(idPedido);
-	}
+//	@Transactional(readOnly=true)
+//	public List<Detalle_Pedido_Model>  getDetalle(Integer idPedido){
+//		return pedidoRepository.getDetallePedido(idPedido);
+//	}
+//	@Transactional(readOnly=true)
+//	public Vector<Detalle_Pedido_Model> getDetPedido(Integer idPedido){
+//		return pedidoRepository.getDetPedido(idPedido);
+//	}
 	@Transactional(readOnly=true)
 	public List<Pedido> findByName(String  nombre){
 		return pedidoRepository.findByName(nombre,nombre);

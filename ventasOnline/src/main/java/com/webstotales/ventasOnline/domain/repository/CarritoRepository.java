@@ -1,5 +1,5 @@
 /**
- * Created By: JEXTM 5 set. 2016
+ * Created By: JEXTM 3 oct. 2016
  */
 package com.webstotales.ventasOnline.domain.repository;
 
@@ -7,15 +7,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.webstotales.ventasOnline.domain.Cliente;
+import com.webstotales.ventasOnline.domain.Carrito;
 
 /**
  * @author JEXTM
  *
  */
 @Repository
-public interface ClienteRepository extends JpaRepository<Cliente, Integer>{
+public interface CarritoRepository extends JpaRepository<Carrito, Integer>{
 
-	@Query("select count(u) from Users u where u.username = ?1")
-	public long countUsername(String username);
+	@Query("select count(u) from Carrito u where u.usuario = ?1")
+	Long countById(Integer idUsuario);
 }

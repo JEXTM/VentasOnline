@@ -38,19 +38,19 @@ public class Detalle_Pedido implements Serializable{
 	private Detalle_PedidoId pk = new Detalle_PedidoId();
 	@Column(name="unidades")
 	private Integer unidades;
-	@Column(name="estado")
-	private boolean estado;
+	@Column(name="precio")
+	private Double precio;
 
 	/**
 	 * @param pk
 	 * @param unidades
 	 * @param estado
 	 */
-	public Detalle_Pedido(Detalle_PedidoId pk, Integer unidades, boolean estado) {
+	public Detalle_Pedido(Detalle_PedidoId pk, Integer unidades, Double precio) {
 		super();
 		this.pk = pk;
 		this.unidades = unidades;
-		this.estado = estado;
+		this.precio = precio;
 	}
 	public Detalle_PedidoId getPk() {
 		return pk;
@@ -64,11 +64,11 @@ public class Detalle_Pedido implements Serializable{
 	public void setUnidades(Integer unidades) {
 		this.unidades = unidades;
 	}
-	public boolean isEstado() {
-		return estado;
+	public Double getEstado() {
+		return precio;
 	}
-	public void setEstado(boolean estado) {
-		this.estado = estado;
+	public void setEstado(Double precio) {
+		this.precio = precio;
 	}
 	
 

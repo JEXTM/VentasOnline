@@ -16,8 +16,10 @@ import com.webstotales.ventasOnline.domain.model.Detalle_Pedido_Model;
  */
 public interface AjaxService {
 	public int getOne();
-	public Long getPedEstadoCount(Character estado);
-	public List<Detalle_Pedido_Model> getDetallePedido(Integer idPedido);
-	public List<Pedido> getPedidoByEstado(Character estado);
-	public Integer updateEstado(Character estado, Integer idPedido);
+	public Long getPedEstadoCount(Integer estado);
+	//public List<Detalle_Pedido_Model> getDetallePedido(Integer idPedido);
+	public List<Pedido> getPedidoByEstado(Integer estado);
+	public Integer updateEstado(Integer estado, Integer idPedido);
+	public Long countByUsuario(Integer idUsuario);
+	public void insertCarrito(Integer idUsuario, Integer idComida);
 }

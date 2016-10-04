@@ -25,9 +25,9 @@
 				<c:forEach items="${pedidos }" var="pedido">
 					<tr>
 		  			 	<td><c:out value="${pedido.idPedido}"/></td>
-		  			 	<td><c:out value="${pedido.idCliente.nombre}"/> <c:out value="${pedido.idCliente.apellido}"/></td>
+		  			 	<td><c:out value="${pedido.usuario.nombre}"/> <c:out value="${pedido.usuario.apellidoPat}"/> <c:out value="${pedido.usuario.apellidoMat}"/></td>
 		  			 	<td><c:out value="${pedido.fecha}"/></td>
-		  			 	<td><c:out value="${pedido.estado}"/></td>
+		  			 	<td><c:out value="${pedido.estado.descripcion}"/></td>
 		  			 	<td>
 		  			 		<select class="form-control" onchange="cambiarEstado(this)">
 		  			 			<option value="0">Seleccione</option>

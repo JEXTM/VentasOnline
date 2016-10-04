@@ -13,6 +13,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,7 +23,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="t_ingrediente")
+@Table(name="t_unidad")
 public class Ingrediente {
 	/**
 	 * Generate By: JEXTM 5 set. 2016
@@ -35,71 +37,112 @@ public class Ingrediente {
 	private Integer cantidad;
 	@Column(name="unidad")
 	private String unidad;
+	
+	@Column(name="estado")
+	private Character estado;
+	
 	@OneToMany(fetch=FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "pk.ingrediente")
 	private Set<ComidaIngrediente> comida = new HashSet<ComidaIngrediente>(0);
+	
+	@ManyToOne
+	@JoinColumn(name="idTipoComida")
+	private TipoComida tipoComida;
+
 	public Integer getIdIngrediente() {
 		return idIngrediente;
 	}
+
 	public void setIdIngrediente(Integer idIngrediente) {
 		this.idIngrediente = idIngrediente;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 	public Integer getCantidad() {
 		return cantidad;
 	}
+
 	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
 	}
+
 	public String getUnidad() {
 		return unidad;
 	}
+
 	public void setUnidad(String unidad) {
 		this.unidad = unidad;
 	}
-	
-	/**
-	 * @param idIngrediente
-	 * @param nombre
-	 * @param cantidad
-	 * @param unidad
-	 * @param comida
-	 */
-	public Ingrediente(Integer idIngrediente, String nombre, Integer cantidad, String unidad, Set<ComidaIngrediente> comida) {
-		super();
-		this.idIngrediente = idIngrediente;
-		this.nombre = nombre;
-		this.cantidad = cantidad;
-		this.unidad = unidad;
-		this.comida = comida;
+
+	public Character getEstado() {
+		return estado;
 	}
+
+	public void setEstado(Character estado) {
+		this.estado = estado;
+	}
+
 	public Set<ComidaIngrediente> getComida() {
 		return comida;
 	}
+
 	public void setComida(Set<ComidaIngrediente> comida) {
 		this.comida = comida;
 	}
+
+	public TipoComida getTipoComida() {
+		return tipoComida;
+	}
+
+	public void setTipoComida(TipoComida tipoComida) {
+		this.tipoComida = tipoComida;
+	}
+
 	/**
 	 * @param idIngrediente
 	 * @param nombre
 	 * @param cantidad
 	 * @param unidad
+	 * @param estado
+	 * @param comida
+	 * @param tipoComida
 	 */
-	public Ingrediente(Integer idIngrediente, String nombre, Integer cantidad, String unidad) {
+	public Ingrediente(Integer idIngrediente, String nombre, Integer cantidad, String unidad, Character estado,
+			Set<ComidaIngrediente> comida, TipoComida tipoComida) {
 		super();
 		this.idIngrediente = idIngrediente;
 		this.nombre = nombre;
 		this.cantidad = cantidad;
 		this.unidad = unidad;
+		this.estado = estado;
+		this.comida = comida;
+		this.tipoComida = tipoComida;
 	}
+
 	/**
-	 * 
+	 * @param nombre
+	 * @param cantidad
+	 * @param unidad
+	 * @param estado
+	 * @param tipoComida
 	 */
-	public Ingrediente() {
-		// TODO Auto-generated constructor stub
+	public Ingrediente(String nombre, Integer cantidad, String unidad, Character estado, TipoComida tipoComida) {
+		super();
+		this.nombre = nombre;
+		this.cantidad = cantidad;
+		this.unidad = unidad;
+		this.estado = estado;
+		this.tipoComida = tipoComida;
 	}
+	
+	
+	
+	
+	
 }

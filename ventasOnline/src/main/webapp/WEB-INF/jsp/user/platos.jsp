@@ -29,10 +29,10 @@
 				<c:forEach items="${platos}" var="plato">
 					<tr>
  						<td><img class="img-responsive img-size" src="http://comidasperuanas.net/wp-content/uploads/2015/07/Arroz-con-Pollo-Peruano-730x430.jpg"/></td> 
-						<td><c:out value="${plato.idComida }"/></td>
+						<td><c:out value="${plato.idPresentacion}"/></td>
 						<td><c:out value="${plato.nombre }"/></td>
 						<td><c:out value="${plato.precio }"/></td>
-						<td><button  class="btn btn-success" onclick="agregarCarrito(<c:out value="${plato.idComida }"/>)">Agregar al Carrito</button></td>
+						<td><button  class="btn btn-success" onclick="agregarCarrito(<c:out value="${plato.idPresentacion }"/>)">Agregar al Carrito</button></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -41,7 +41,15 @@
 	<c:if test="${empty platos }">
 		<br>
 		<br>
-		<p class="alert alert-danger"><b>No Se Encontraron Platos</b></p>
+		<p class="alert alert-danger text-center"><b>No Se Encontraron Platos</b></p>
 	</c:if>
+	
+	<script>
+		function agregarCarrito(codigoComida){
+			ajax.insertCarrito(1,codigoComida,function(data){
+				
+			});
+		}
+	</script>
 </body>
 </html>
