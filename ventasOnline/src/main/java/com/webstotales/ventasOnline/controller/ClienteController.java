@@ -49,7 +49,7 @@ public class ClienteController {
 			model.setViewName("user/client");
 			return model;
 		}
-		cliente.setIdmc(cliente.getPeso()/Math.sqrt(cliente.getTalla()));
+		cliente.setIdmc(cliente.getPeso()/Math.pow(cliente.getTalla(), 2.0));
 		maClientservice.saveClient(cliente);
 		model.addObject("moClient",cliente);
 		model.addObject("mensaje", "Se Agrego Correctamente");

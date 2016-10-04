@@ -10,10 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.webstotales.ventasOnline.domain.Carrito;
+import com.webstotales.ventasOnline.domain.Detalle_Pedido;
 import com.webstotales.ventasOnline.domain.EstadoPedido;
 import com.webstotales.ventasOnline.domain.Pedido;
 import com.webstotales.ventasOnline.domain.model.Detalle_Pedido_Model;
 import com.webstotales.ventasOnline.domain.repository.CarritoRepository;
+import com.webstotales.ventasOnline.domain.repository.Detalle_pedidoRepository;
 import com.webstotales.ventasOnline.domain.repository.PedidoRepository;
 import com.webstotales.ventasOnline.util.AjaxService;
 
@@ -27,6 +29,9 @@ public class AjaxServiceImpl implements AjaxService{
 	
 	@Autowired
 	CarritoRepository carritoRepository;
+	
+	@Autowired
+	Detalle_pedidoRepository detallePedidoRepository;
 	/* 
 	 * Descripcion: 
 	 *	@param :
@@ -90,6 +95,16 @@ public class AjaxServiceImpl implements AjaxService{
 	public void insertCarrito(Integer idUsuario, Integer idComida) {
 		Carrito carrito = new Carrito(idUsuario, idComida);
 		carritoRepository.saveAndFlush(carrito);
+	}
+	@Override
+	@Transactional
+	public void borrarCarrito(Integer idCarrito) {
+		carritoRepository.delete(idCarrito);
+	}
+	@Override
+	@Transactional(readOnly=true)
+	public List<Detalle_Pedido> getDetallePedido(Integer idPedido) {
+		return detallePedidoRepository.getById(idPedido);
 	}
 	
 }

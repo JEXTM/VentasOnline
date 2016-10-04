@@ -31,10 +31,11 @@
 		  			 	<td>
 		  			 		<select class="form-control" onchange="cambiarEstado(this)">
 		  			 			<option value="0">Seleccione</option>
-		  			 			<option value="I">Ingresado</option>
-		  			 			<option value="P">En Proceso</option>
-		  			 			<option value="T">Terminado</option>
-		  			 			<option value="C">Cancelado</option>	  			 			
+								<c:if test="${not empty estados }">
+									<c:forEach items="${estados }" var="estado">
+										<option value="<c:out value="${estado.idPedido }"/>"><c:out value="${estado.descripcion }"/></option>
+									</c:forEach>
+								</c:if>	  			 			
 		  			 		</select>
 		  			 	</td>
 					</tr>

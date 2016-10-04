@@ -101,7 +101,24 @@
 					<form:option value="F">Femenino</form:option>
 				</form:select>
 			</div>
+						<div class="col-md-3">
+				<label for="celular">Celular</label>
+			</div>
+			<div class="col-md-3">
+				<form:input path="celular" cssClass="form-control" required="required"/>
+			</div>
 		</div>
+		<br>
+		<br>
+		<div class="form-group">
+			<div class="col-md-3">
+				<label for="fechaNac">Fecha de Nacimiento</label>
+			</div>
+			<div class="col-md-3">
+				<form:input path="fechaNac" placeholder="DD/MM/YYYY" cssClass="form-control" required="required"/>
+			</div>
+			
+		</div>		
 		<br>
 		<br>
 		<div class="col-md-4"></div>

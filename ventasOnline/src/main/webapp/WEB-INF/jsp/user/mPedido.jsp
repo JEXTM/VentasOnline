@@ -18,10 +18,11 @@
 	<div class="col-md-4">
 		<select class="form-control" id="estadoProceso" onchange="return getEstados(this)">
 			<option value="0">--Seleccione--</option>
-			<option value="I">Ingresado</option>
-			<option value="P">En Proceso</option>
-			<option value="T">Terminado</option>
-			<option value="C">Cancelado</option>
+			<c:if test="${not empty estados }">
+				<c:forEach items="${estados }" var="estado">
+					<option value="<c:out value="${estado.idPedido }"/>"><c:out value="${estado.descripcion }"/></option>
+				</c:forEach>
+			</c:if>
 		</select>
 	</div>
 	<br>
@@ -68,7 +69,7 @@
 	  			 <c:forEach items="${pedido}" var="pedido">
 		  			 <tr>
 		  			 	<td><c:out value="${pedido.idPedido}"/></td>
-		  			 	<td><c:out value="${pedido.usuario.nombre}"/> <c:out value="${pedido.usuario.apellido}"/></td>
+		  			 	<td><c:out value="${pedido.usuario.nombre}"/> <c:out value="${pedido.usuario.apellidoPat}"/> <c:out value="${pedido.usuario.apellidoMat}"/></td>
 		  			 	<td><c:out value="${pedido.fecha}"/></td>
 		  			 	<td><button class="btn btn-primary btn-block" onclick="verDetalle(<c:out value="${pedido.idPedido}"/>)" data-toggle="modal" data-target="#detalle_ped">Ver Detalle</button></td>
 		  			 	<td><a  class="btn btn-info btn-block" href="<c:url value="/downloadPdf?pedido=${pedido.idPedido}"/>">Generar Comprobante</a></td>

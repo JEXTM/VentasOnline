@@ -67,7 +67,7 @@
                                     	</a>
                                     </li>
                                     <li>
-                                        <a href="#" class="icon-info">
+                                        <a href="<c:url value="/carrito"/>" class="icon-info">
                                             <i class="fa fa-bell" aria-hidden="true"></i>
                                             <span class="label label-primary" id="idCarrito">0</span>
                                         </a>
@@ -150,6 +150,7 @@
 	</script>
 	<script type="text/javascript">
 	function getEstado(){
+		getCarrito();
 	ajax.getPedEstadoCount(1,function(data){
 		if(data>0){
 			$("#idPedido").text(data);
@@ -166,12 +167,13 @@
 	}
 	function getCarrito(){
 		ajax.countByUsuario(1,function(data){
+			if(data>0){
 			$("#idCarrito").text(data);
 			$("#idCarrito").attr("class","label label-danger");
+			}
 		});
 	}
 	setInterval('getEstado()', 5000);
-	setInterval('getCarrito()', 5000);
 	
 	$(document).ready(function() {
 	    $('#dataTable').DataTable();
