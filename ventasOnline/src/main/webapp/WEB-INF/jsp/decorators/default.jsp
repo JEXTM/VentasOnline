@@ -1,3 +1,4 @@
+<%@page import="com.webstotales.ventasOnline.domain.Usuario"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -21,19 +22,19 @@
         <div class="row display-table-row">
             <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
                 <div class="logo">
-                    <a href="<c:url value="/"/>"><img src="http://logo222.com/wp-content/uploads/2014/11/Logo1016D.png" alt="merkery_logo" class="hidden-xs hidden-sm">
+                    <a href="<c:url value="/index"/>"><img src="http://logo222.com/wp-content/uploads/2014/11/Logo1016D.png" alt="merkery_logo" class="hidden-xs hidden-sm">
                         <!-- <img src="http://kingofwallpapers.com/circle/circle-003.jpg" alt="merkery_logo" class="visible-xs visible-sm circle-logo"> -->
                     </a>
                 </div>
                 <div class="navi">
                     <ul>
-                        <li><a href="<c:url value="/"/>"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
+                        <li><a href="<c:url value="/index"/>"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
                         <li><a href="<c:url value="/mPedido?estado=I"/>"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Pedidos</span></a></li>
                         <li><a href="<c:url value="/client"/>"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Cliente</span></a></li>
                         <li><a href="<c:url value="/ePedido"/>"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Estados</span></a></li>
                         <li><a href="<c:url value="/eClient"/>"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Lista de Usuarios</span></a></li>
                          <li><a href="<c:url value="/platos"/>"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Platos</span></a></li>
-                        <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Setting</span></a></li>
+                        <!-- <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Setting</span></a></li> -->
                     </ul>
                 </div>
             </div>
@@ -78,13 +79,14 @@
                                         <ul class="dropdown-menu">
                                             <li>
                                                 <div class="navbar-content">
-                                                    <span>Jorge Flores</span>
+                                              
+                                                    <span></span>
                                                     <p class="text-muted small">
-                                                        jFloresF@comidasaludable.com
+                                                        Jorge_Flores5@umsp.pe
                                                     </p>
                                                     <div class="divider">
                                                     </div>
-                                                    <a href="#" class="view btn-sm active">View Profile</a>
+                                                    <a href="<c:url value="/logoff"/>" class="view btn-sm active">Cerrar Session</a>
                                                 </div>
                                             </li>
                                         </ul>

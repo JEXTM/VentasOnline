@@ -18,4 +18,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 	
 	@Query("select count(u) from Usuario u where u.usuario = ?1")
 	Long countUsername(String username);
+	
+	@Query("select u from Usuario u where u.usuario =?1 and u.contrasena = ?2")
+	Usuario login(String usernmae, String password);
 }

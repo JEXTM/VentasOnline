@@ -39,4 +39,8 @@ public class ManageClienteService {
 	public List<Usuario> getAll(){
 		return usuarioRepository.findAll();
 	}
+	@Transactional(readOnly=true)
+	public Usuario login(String usuario , String contrasena){
+		return usuarioRepository.login(usuario, contrasena);
+	}
 }

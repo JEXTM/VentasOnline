@@ -18,8 +18,8 @@
 <div class="container">
 	<form:form action="login" cssClass="form-signin" method="POST" commandName="usModel">
 		<h1 class="form-signin-heading text-muted">Login</h1>
-		<form:input path="username" cssClass="form-control" placeholder="Usuario" required="required"/>
-		<form:password path="password" cssClass="form-control" placeholder="Contraseña" required="required"/>
+		<form:input path="usuario" cssClass="form-control" placeholder="Usuario" required="required"/>
+		<form:password path="contrasena" cssClass="form-control" placeholder="Contraseña" required="required"/>
 		<form:button class="btn btn-lg btn-danger btn-block">Enviar</form:button>
 	</form:form>
 

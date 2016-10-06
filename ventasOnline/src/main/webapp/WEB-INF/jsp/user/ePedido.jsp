@@ -44,10 +44,10 @@
 		</table>
 	<script>
 		function cambiarEstado(el){
+			var codigo = $(el).parent().parent().children().first().text();
 			var row = $(el).parent().parent();
-			var codigo = row.children().first();
-			ajax.updateEstado(el.value,codigo.text(),function(data){
-				row.children().eq(3).text(el.value);
+			ajax.updateEstado(el.value,codigo,function(data){
+				row.children().eq(3).text(el.options[el.selectedIndex].innerHTML);
 			});
 		}
 	</script>

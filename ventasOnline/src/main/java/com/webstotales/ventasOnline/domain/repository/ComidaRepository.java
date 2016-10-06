@@ -3,7 +3,10 @@
  */
 package com.webstotales.ventasOnline.domain.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.webstotales.ventasOnline.domain.Comida;
@@ -14,5 +17,6 @@ import com.webstotales.ventasOnline.domain.Comida;
  */
 @Repository
 public interface ComidaRepository extends JpaRepository<Comida, Integer>{
-
+	@Query("select u from Comida u where u.tipoComida.id = ?1")
+	List<Comida> findByType(Integer idTipo);
 }

@@ -28,5 +28,5 @@ public class ManageCarritoService {
 	public List<Carrito> findAll(){
 		return carritoRepository.findAll();
 	}
-	
+
 }

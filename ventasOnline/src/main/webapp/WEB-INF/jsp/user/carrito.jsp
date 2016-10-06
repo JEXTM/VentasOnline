@@ -30,7 +30,7 @@
 				<c:forEach items="${comidas}" var="plato">
 					<tr>
  						<td><img class="img-responsive img-size" src="http://comidasperuanas.net/wp-content/uploads/2015/07/Arroz-con-Pollo-Peruano-730x430.jpg"/></td> 
-						<td><c:out value="${plato.comida.idPresentacion}"/></td>
+						<td><c:out value="${plato.comida.idComida}"/></td>
 						<td><c:out value="${plato.comida.nombre }"/></td>
 						<td><c:out value="${plato.comida.precio }"/></td>
 						<td><button class="btn btn-danger" onclick="borrar(<c:out value="${plato.idCarrito}"/>, this)">Borrar</button></td>

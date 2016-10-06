@@ -74,7 +74,7 @@ public class AjaxServiceImpl implements AjaxService{
 	@Transactional
 	public Integer updateEstado(Integer estado, Integer idPedido){
 		
-		return pedidoRepository.updateEstado(new EstadoPedido(estado, ""), idPedido);
+		return pedidoRepository.updateEstado(estado, idPedido);
 	}
 	/* 
 	 * Descripcion: 

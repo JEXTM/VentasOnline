@@ -26,6 +26,9 @@ public class ManageComidaService {
 	public Comida findOne(Integer idComida){
 		return  comidaRepository.findOne(idComida);
 	}
-	
+	@Transactional( readOnly=true)
+	public List<Comida> findByType(Integer idTipo){
+		return comidaRepository.findByType(idTipo);
+	}
 	
 }

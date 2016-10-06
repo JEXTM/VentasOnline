@@ -1,3 +1,4 @@
+<%@page import="com.webstotales.ventasOnline.domain.Usuario"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -14,7 +15,21 @@
 </style>
 </head>
 <body>
+<%Usuario user = (Usuario) session.getAttribute("user"); %>
+		<c:if test="${not empty tipos }">
+			<div class="row">
+				<div class="col-md-6">
+					<select class="form-control" onchange="buscarComida()" id="slTipo">
+						<option value="0">-----Seleccione-----</option>
+						<c:forEach items="${tipos }" var="tipo">
+							<option value="<c:out value="${tipo.id }"/>"><c:out value="${tipo.nombre }"/></option>
+						</c:forEach>
+					</select>
+				</div>
+			</div>
+		</c:if>
 	<c:if test="${not empty platos}">
+
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -28,11 +43,11 @@
 			<tbody>
 				<c:forEach items="${platos}" var="plato">
 					<tr>
- 						<td><img class="img-responsive img-size" src="http://comidasperuanas.net/wp-content/uploads/2015/07/Arroz-con-Pollo-Peruano-730x430.jpg"/></td> 
-						<td><c:out value="${plato.idPresentacion}"/></td>
+ 						<td><img class="img-responsive img-size" src="resources/img/platos/<c:out value="${plato.idComida}"/>.jpg"/></td> 
+						<td><c:out value="${plato.idComida}"/></td>
 						<td><c:out value="${plato.nombre }"/></td>
 						<td><c:out value="${plato.precio }"/></td>
-						<td><button  class="btn btn-success" onclick="agregarCarrito(<c:out value="${plato.idPresentacion }"/>)">Agregar al Carrito</button></td>
+						<td><button  class="btn btn-success" onclick="agregarCarrito(<c:out value="${plato.idComida }"/>)">Agregar al Carrito </button></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -46,10 +61,15 @@
 	
 	<script>
 		function agregarCarrito(codigoComida){
-			ajax.insertCarrito(1,codigoComida,function(data){
+			ajax.insertCarrito(<%=user.getIdUsuario()%>,codigoComida,function(data){
 				
 			});
 		}
+		function buscarComida(){
+			var estado = $("#slTipo").val();
+			if(estado!=0)window.location.href = '<c:url value="/bPlatos?tipo="/>'+estado;
+		}
+
 	</script>
 </body>
 </html>

@@ -34,6 +34,6 @@ public interface PedidoRepository extends JpaRepository<Pedido, Integer>{
 	@Transactional
 	@Modifying
 	@Query("update Pedido set estado.idPedido=?1 where idPedido = ?2")
-	Integer updateEstado(EstadoPedido estado, Integer idPedido);
+	Integer updateEstado(Integer estado, Integer idPedido);
 }
 
