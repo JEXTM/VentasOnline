@@ -30,4 +30,9 @@ public class ManageDetalle_PedidoService {
 		return detalle_pedidoRepository.getById(idPedido);
 	}
 	
+	@Transactional
+	public Detalle_Pedido save(Detalle_Pedido detalle_Pedido){
+		return detalle_pedidoRepository.saveAndFlush(detalle_Pedido);
+	}
+	
 }

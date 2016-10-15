@@ -64,10 +64,10 @@ public class Detalle_Pedido implements Serializable{
 	public void setUnidades(Integer unidades) {
 		this.unidades = unidades;
 	}
-	public Double getEstado() {
+	public Double getPrecio() {
 		return precio;
 	}
-	public void setEstado(Double precio) {
+	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
 	

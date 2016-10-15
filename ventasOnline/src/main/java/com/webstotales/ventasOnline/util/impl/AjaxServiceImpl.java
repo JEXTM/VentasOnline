@@ -4,6 +4,7 @@
 package com.webstotales.ventasOnline.util.impl;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,7 +74,6 @@ public class AjaxServiceImpl implements AjaxService{
 	}
 	@Transactional
 	public Integer updateEstado(Integer estado, Integer idPedido){
-		
 		return pedidoRepository.updateEstado(estado, idPedido);
 	}
 	/* 
@@ -101,10 +101,28 @@ public class AjaxServiceImpl implements AjaxService{
 	public void borrarCarrito(Integer idCarrito) {
 		carritoRepository.delete(idCarrito);
 	}
-	@Override
-	@Transactional(readOnly=true)
-	public List<Detalle_Pedido> getDetallePedido(Integer idPedido) {
-		return detallePedidoRepository.getById(idPedido);
+
+	@Transactional
+	public List<Detalle_Pedido_Model> getDetallePedido(Integer idPedido) {
+		List<Detalle_Pedido> pedidos = detallePedidoRepository.getById(idPedido);
+		List<Detalle_Pedido_Model> pedidosReturn = new ArrayList<Detalle_Pedido_Model>();
+		for (Detalle_Pedido detalle_Pedido : pedidos) {
+			if (detalle_Pedido!=null) {
+			Detalle_Pedido_Model detPedido = new Detalle_Pedido_Model();
+			detPedido.setIdPedido(detalle_Pedido.getPk().getPedido().getIdPedido());
+			detPedido.setApellido(detalle_Pedido.getPk().getPedido().getUsuario().getApellidoPat() + " "+ detalle_Pedido.getPk().getPedido().getUsuario().getApellidoMat());
+			detPedido.setCantidad(detalle_Pedido.getUnidades());
+			detPedido.setComida(detalle_Pedido.getPk().getComida().getNombre());
+			detPedido.setDirrecion(detalle_Pedido.getPk().getPedido().getUsuario().getDireccion());
+			detPedido.setEstado(detalle_Pedido.getPk().getPedido().getEstado().getDescripcion());
+			detPedido.setFecha(detalle_Pedido.getPk().getPedido().getFecha());
+			detPedido.setImporte(detalle_Pedido.getPk().getPedido().getImporte());
+			detPedido.setNombre(detalle_Pedido.getPk().getPedido().getUsuario().getNombre());
+			detPedido.setPrecio(detalle_Pedido.getPrecio());
+			pedidosReturn.add(detPedido);
+			}
+		}
+		return pedidosReturn;
 	}
 	
 }

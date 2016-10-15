@@ -22,5 +22,5 @@ public interface AjaxService {
 	public Long countByUsuario(Integer idUsuario);
 	public void insertCarrito(Integer idUsuario, Integer idComida);
 	public void borrarCarrito(Integer idCarrito);
-	public List<Detalle_Pedido> getDetallePedido(Integer idPedido);
+	public List<Detalle_Pedido_Model> getDetallePedido(Integer idPedido);
 }

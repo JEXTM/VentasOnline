@@ -60,5 +60,10 @@ public class ManagePedidoService{
 	public List<Pedido> findAll(){
 		return pedidoRepository.findAll();
 	}
+	@Transactional
+	public Pedido save(Pedido pedido)
+	{
+		return pedidoRepository.saveAndFlush(pedido);
+	}
 
 }

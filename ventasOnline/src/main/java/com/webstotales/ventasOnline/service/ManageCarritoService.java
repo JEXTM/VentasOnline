@@ -28,5 +28,9 @@ public class ManageCarritoService {
 	public List<Carrito> findAll(){
 		return carritoRepository.findAll();
 	}
+	@Transactional
+	public void DeleteCarrito(Integer idUser){
+		carritoRepository.deleteByUser(idUser);
+	}
 
 }

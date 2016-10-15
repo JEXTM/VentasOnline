@@ -23,6 +23,10 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.webstotales.ventasOnline.domain.Carrito;
 import com.webstotales.ventasOnline.domain.Comida;
 import com.webstotales.ventasOnline.domain.Detalle_Pedido;
+import com.webstotales.ventasOnline.domain.EstadoPedido;
+import com.webstotales.ventasOnline.domain.Pedido;
+import com.webstotales.ventasOnline.domain.Usuario;
+import com.webstotales.ventasOnline.domain.ids.Detalle_PedidoId;
 import com.webstotales.ventasOnline.domain.model.ComidaModel;
 import com.webstotales.ventasOnline.service.ManageCarritoService;
 import com.webstotales.ventasOnline.service.ManageComidaService;
@@ -183,6 +187,44 @@ public class PedidoController {
 		}
 		modelo.addObject("comidas", modelosComida);
 		return modelo;
+	}
+	
+	@RequestMapping(value="/sPedido")
+	public ModelAndView savePedido(HttpServletRequest request){
+		ModelAndView model = new ModelAndView("/user/index");
+		String[] comidas = request.getParameterValues("idComida");
+		Usuario user = (Usuario)request.getSession().getAttribute("user");
+		Pedido pedido = new  Pedido();
+		pedido.setEstado(new EstadoPedido(1, ""));
+		pedido.setFecha(new Date());
+		pedido.setTipo_comprobante('E');
+		pedido.setUsuario(user);
+		Double importe =0.0;
+		pedido.setImporte(importe);
+		Pedido newPedido = maPedidos.save(pedido);
+		for (int i = 0; i < comidas.length; i++) {
+			Integer cont = 1;
+			Detalle_Pedido det_pedido = new Detalle_Pedido();
+			Integer idComida = Integer.parseInt(comidas[i]);
+			for (int j = comidas.length-1; j > 0; j--) {
+				if(i!=j){
+					if (comidas[i].equals(comidas[j])) {
+						cont++;
+					}
+				}
+			}
+			Comida comida = maComidaService.findOne(idComida);
+			Detalle_PedidoId id = new Detalle_PedidoId(newPedido, comida);
+			det_pedido.setPk(id);
+			det_pedido.setUnidades(cont);
+			det_pedido.setPrecio(comida.getPrecio()*cont);
+			importe+=comida.getPrecio()*cont;
+			maDetalle_PedidoService.save(det_pedido);
+		}
+		newPedido.setImporte(importe);
+		maPedidos.save(newPedido);
+		maCarritoService.DeleteCarrito(user.getIdUsuario());
+		return model;
 	}
 
 }

@@ -12,7 +12,9 @@
 		<![CDATA[
 		  import java.util.List;
 		  import java.util.Map;
+		  import com.webstotales.ventasOnline.domain.model.Detalle_Pedido_Model;
 		  ajax.getPedidoByEstado(Character);
+		  ajax.getDetallePedido(Integer);
 		]]>
 	</signatures>
 </dwr>

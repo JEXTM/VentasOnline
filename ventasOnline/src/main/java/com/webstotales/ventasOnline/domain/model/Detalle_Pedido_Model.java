@@ -3,6 +3,7 @@
  */
 package com.webstotales.ventasOnline.domain.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Date;
  *
  */
 
-public class Detalle_Pedido_Model {
+public class Detalle_Pedido_Model implements Serializable{
 	/**
 	 * Generate By: JEXTM 10 set. 2016
 	 */
@@ -19,9 +20,9 @@ public class Detalle_Pedido_Model {
 	private String apellido;
 	private String dirrecion;
 	private Date fecha;
-	private Character estado;
+	private String estado;
 	private String comida;
-	private Long cantidad;
+	private Integer cantidad;
 	private Double precio;
 	private Double importe;
 	public Integer getIdPedido() {
@@ -54,10 +55,10 @@ public class Detalle_Pedido_Model {
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	public Character getEstado() {
+	public String getEstado() {
 		return estado;
 	}
-	public void setEstado(Character estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 	public String getComida() {
@@ -66,10 +67,10 @@ public class Detalle_Pedido_Model {
 	public void setComida(String comida) {
 		this.comida = comida;
 	}
-	public Long getCantidad() {
+	public Integer getCantidad() {
 		return cantidad;
 	}
-	public void setCantidad(Long cantidad) {
+	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
 	}
 	public Double getPrecio() {
@@ -97,7 +98,7 @@ public class Detalle_Pedido_Model {
 	 * @param importe
 	 */
 	public Detalle_Pedido_Model(Integer idPedido, String nombre, String apellido, String dirrecion, Date fecha,
-			Character estado, String comida, Long cantidad, Double precio, Double importe) {
+			String estado, String comida, Integer cantidad, Double precio, Double importe) {
 		super();
 		this.idPedido = idPedido;
 		this.nombre = nombre;

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,29 +17,32 @@
 <body>
 	<c:choose>
 		<c:when test="${not empty comidas }">
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<td>Imagen</td>
-					<td>Codigo</td>
-					<td>Nombre</td>
-					<td>Precio</td>
-					<td>Borrar</td>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${comidas}" var="plato">
+		<form:form action="sPedido" method="GET"  >
+			<table class="table table-hover">
+				<thead>
 					<tr>
- 						<td><img class="img-responsive img-size" src="http://comidasperuanas.net/wp-content/uploads/2015/07/Arroz-con-Pollo-Peruano-730x430.jpg"/></td> 
-						<td><c:out value="${plato.comida.idComida}"/></td>
-						<td><c:out value="${plato.comida.nombre }"/></td>
-						<td><c:out value="${plato.comida.precio }"/></td>
-						<td><button class="btn btn-danger" onclick="borrar(<c:out value="${plato.idCarrito}"/>, this)">Borrar</button></td>
+						<td>Imagen</td>
+						<td>Codigo</td>
+						<td>Nombre</td>
+						<td>Precio</td>
+						<td>Borrar</td>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<button class="btn btn-info btn-block">Generar Comprobante</button>
+				</thead>
+				<tbody>
+					<c:forEach items="${comidas}" var="plato">
+						<tr>
+							<td class="hidden"><input type="hidden" value="${plato.comida.idComida}" name="idComida" id="idComida"></td>
+	 						<td><img class="img-responsive img-size" src="http://comidasperuanas.net/wp-content/uploads/2015/07/Arroz-con-Pollo-Peruano-730x430.jpg"/></td> 
+							<td><c:out value="${plato.comida.idComida}"/></td>
+							<td><c:out value="${plato.comida.nombre }"/></td>
+							<td><c:out value="${plato.comida.precio }"/></td>
+							<td><button class="btn btn-danger" onclick="return borrar(<c:out value="${plato.idCarrito}"/>, this)">Borrar</button></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			<button class="btn btn-info btn-block">Generar Comprobante</button>
+		</form:form>
 		</c:when>
 		<c:otherwise>
 			<p class="alert alert-danger text-center"><b>NO EXISTEN DATOS EN EL CARRITO</b></p>
@@ -50,6 +54,7 @@
 				var row =$(el).parent().parent();
 				row.remove();
 			});
+			return false;
 		}
 	</script>
 </body>
