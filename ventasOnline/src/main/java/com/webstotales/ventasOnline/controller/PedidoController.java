@@ -10,16 +10,21 @@ import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.sun.org.apache.regexp.internal.recompile;
 import com.webstotales.ventasOnline.domain.Carrito;
 import com.webstotales.ventasOnline.domain.Comida;
 import com.webstotales.ventasOnline.domain.Detalle_Pedido;
@@ -29,6 +34,7 @@ import com.webstotales.ventasOnline.domain.Usuario;
 import com.webstotales.ventasOnline.domain.ids.Detalle_PedidoId;
 import com.webstotales.ventasOnline.domain.model.ComidaModel;
 import com.webstotales.ventasOnline.service.ManageCarritoService;
+import com.webstotales.ventasOnline.service.ManageClienteService;
 import com.webstotales.ventasOnline.service.ManageComidaService;
 import com.webstotales.ventasOnline.service.ManageDetalle_PedidoService;
 import com.webstotales.ventasOnline.service.ManageEstadoPedidoService;
@@ -54,6 +60,8 @@ public class PedidoController {
 	ManageComidaService maComidaService;
 	@Autowired
 	ManageEstadoPedidoService maEstadoService;
+	@Autowired
+	ManageClienteService maClienteService;
 	
 	@RequestMapping(value="/pedidos")
 	public ModelAndView index(){
@@ -224,6 +232,38 @@ public class PedidoController {
 		newPedido.setImporte(importe);
 		maPedidos.save(newPedido);
 		maCarritoService.DeleteCarrito(user.getIdUsuario());
+		return model;
+	}
+	
+	@RequestMapping(value = "/sPedidoC")
+	public ModelAndView savePedidoCliente(HttpServletRequest request){
+		ModelAndView model = new ModelAndView("/user/sPedidoC");
+		model.addObject("comidas", maComidaService.findAll());
+		
+		return model;
+	}
+	
+	@RequestMapping(value = "/sPedidoC", method = RequestMethod.POST)
+	public ModelAndView savePedidoClientePost(HttpServletRequest request){
+		ModelAndView model = new ModelAndView("/user/sPedidoC");
+		int id=0;
+		try{
+			id = Integer.parseInt(request.getParameter("idCliente"));
+		}catch (NumberFormatException e) {
+			model.addObject("mensaje","Ocurrio un error");
+			return model;
+		}
+		Pedido pedido = new Pedido();
+		EstadoPedido activo = new EstadoPedido();
+		activo.setIdPedido(1);
+		pedido.setEstado(activo);
+		pedido.setFecha(new Date());
+		pedido.setTipo_comprobante('E');
+		pedido.setUsuario(maClienteService.findById(id));
+		
+		
+		
+		maPedidos.save(pedido);
 		return model;
 	}
 
