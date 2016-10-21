@@ -47,4 +47,8 @@ public class ManageClienteService {
 	public Usuario findById(Integer id){
 		return usuarioRepository.findOne(id);
 	}
+	@Transactional
+	public Integer getIdRol(Integer idUsuario){
+		return usuarioRepository.getIdRol(idUsuario);	
+	}
 }

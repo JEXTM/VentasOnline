@@ -27,12 +27,14 @@
                     </a>
                 </div>
                 <div class="navi">
-                    <ul>
-                        <li><a href="<c:url value="/index"/>"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
-                        <li><a href="<c:url value="/mPedido?estado=I"/>"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Pedidos</span></a></li>
-                        <li><a href="<c:url value="/client"/>"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Cliente</span></a></li>
-                        <li><a href="<c:url value="/ePedido"/>"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Estados</span></a></li>
-                        <li><a href="<c:url value="/eClient"/>"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Lista de Usuarios</span></a></li>
+                    <ul>  
+                    <li><a href="<c:url value="/index"/>"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
+                    	<c:if test="${not empty admin }">
+	                        <li><a href="<c:url value="/mPedido?estado=I"/>"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Pedidos</span></a></li>
+	                        <li><a href="<c:url value="/client"/>"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Cliente</span></a></li>
+	                        <li><a href="<c:url value="/ePedido"/>"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Estados</span></a></li>
+	                        <li><a href="<c:url value="/eClient"/>"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Lista de Usuarios</span></a></li>
+                         </c:if>
                          <li><a href="<c:url value="/platos"/>"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Platos</span></a></li>
                         <!-- <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Setting</span></a></li> -->
                     </ul>
@@ -60,6 +62,7 @@
                         <div class="col-md-5">
                             <div class="header-rightside">
                                 <ul class="list-inline header-top pull-right">
+                                <c:if test="${not empty admin }">
                                     <!-- <li class="hidden-xs"><a href="#" class="add-project" data-toggle="modal" data-target="#add_project">Add Project</a></li> -->
                                     <li>
                                     	<a href="<c:url value="/pedidos"/>" class="icon-info">
@@ -67,6 +70,7 @@
                                     		<span class="label label-primary" id="idPedido">0</span>
                                     	</a>
                                     </li>
+								</c:if>
                                     <li>
                                         <a href="<c:url value="/carrito"/>" class="icon-info">
                                             <i class="fa fa-bell" aria-hidden="true"></i>

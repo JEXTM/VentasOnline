@@ -21,4 +21,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 	
 	@Query("select u from Usuario u where u.usuario =?1 and u.contrasena = ?2")
 	Usuario login(String usernmae, String password);
+	
+	@Query("select u.rol.idRol from Usuario u where u.idUsuario = ?1")
+	Integer getIdRol(Integer idUsuario); 
+	
 }

@@ -42,6 +42,7 @@ public class HomeController {
 	}
 	@RequestMapping(value="/login", method= RequestMethod.POST)
 	public String logi(@Valid @ModelAttribute Usuario users, BindingResult result, HttpServletRequest request){
+		HttpSession session = request.getSession();
 		if (result.hasErrors()) {
 			for (int i = 0; i < result.getErrorCount(); i++) {
 				System.out.println("Error: "+ result.getAllErrors().get(i));
@@ -50,8 +51,14 @@ public class HomeController {
 		Usuario usuario = maClienteService.login(users.getUsuario(), users.getContrasena());
 		if (usuario==null) {
 			return "redirect:/";
+		}else{
+			Integer idRol = maClienteService.getIdRol(usuario.getIdUsuario());
+			if (idRol==2) {
+				session.setAttribute("admin", usuario);
+			}
 		}
-		HttpSession session = request.getSession();
+		
+		
 		session.setAttribute("user", usuario);
 		return "redirect:/index";
 	}

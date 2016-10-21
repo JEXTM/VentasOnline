@@ -32,5 +32,9 @@ public class ManageCarritoService {
 	public void DeleteCarrito(Integer idUser){
 		carritoRepository.deleteByUser(idUser);
 	}
+	@Transactional(readOnly=true)
+	public List<Carrito> findByIdUsuario(Integer idUsuario){
+		return carritoRepository.findByIdUsuario(idUsuario);
+	}
 
 }

@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -181,9 +182,12 @@ public class PedidoController {
 	}
 	
 	@RequestMapping(value="/carrito")
-	public ModelAndView getCarrito(){
+	public ModelAndView getCarrito(HttpServletRequest request){
 		ModelAndView modelo = new ModelAndView("/user/carrito");
-		List<Carrito> carritos = maCarritoService.findAll();
+		//List<Carrito> carritos = maCarritoService.findAll();
+		HttpSession session = request.getSession();
+		Usuario usuario = (Usuario) session.getAttribute("user");
+		List<Carrito> carritos = maCarritoService.findByIdUsuario(usuario.getIdUsuario());
 		List<ComidaModel> modelosComida = new ArrayList<ComidaModel>();
 		for(Carrito carrito : carritos)
 		{

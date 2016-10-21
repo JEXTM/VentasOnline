@@ -3,6 +3,8 @@
  */
 package com.webstotales.ventasOnline.domain.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -25,4 +27,7 @@ public interface CarritoRepository extends JpaRepository<Carrito, Integer>{
 	@Modifying
 	@Query("delete from Carrito u where u.usuario=?1")
 	void deleteByUser(Integer idUsuario);
+	
+	@Query("select u from Carrito u where u.usuario = ?1")
+	List<Carrito> findByIdUsuario(Integer idUsuario);
 }
