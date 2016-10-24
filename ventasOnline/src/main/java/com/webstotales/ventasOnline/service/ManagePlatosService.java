@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.webstotales.ventasOnline.domain.Comida;
+import com.webstotales.ventasOnline.domain.model.MasVendidosModel;
 import com.webstotales.ventasOnline.domain.repository.ComidaRepository;
 
 /**
@@ -35,6 +36,10 @@ public class ManagePlatosService {
 	@Transactional(readOnly=true)
 	public Comida findById(Integer idComida){
 		return comidaRepo.findOne(idComida);
+	}
+	@Transactional(readOnly=true)
+	public List<Object> getMasVendidos(){
+		return comidaRepo.getMasVendidos();
 	}
 	
 }

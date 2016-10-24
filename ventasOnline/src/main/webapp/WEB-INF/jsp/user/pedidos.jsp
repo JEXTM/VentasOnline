@@ -94,6 +94,12 @@ function verDetalle(id){
 				}
 			}
 		});
+		
+		ajax.getDetalleById(id, function(data){
+			if(data.length == 0){
+				
+			}
+		});
 }
 
 </script>

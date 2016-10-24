@@ -30,5 +30,5 @@ public class ManageComidaService {
 	public List<Comida> findByType(Integer idTipo){
 		return comidaRepository.findByType(idTipo);
 	}
-	
+
 }

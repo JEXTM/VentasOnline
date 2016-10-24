@@ -124,5 +124,21 @@ public class AjaxServiceImpl implements AjaxService{
 		}
 		return pedidosReturn;
 	}
+	/* 
+	 * Descripcion: 
+	 *	@param :
+	 */
+	@Override
+	public Integer cambiarEstadoPedido(Integer estado,Integer idPedido) {
+		return pedidoRepository.updateEstado(estado, idPedido);
+	}
+	/* 
+	 * Descripcion: 
+	 *	@param :
+	 */
+	@Override
+	public List<Object> getDetalleById(Integer idPedido) {
+		return detallePedidoRepository.getDetalleById(idPedido);
+	}
 	
 }

@@ -125,7 +125,7 @@
 	} */
 	
 	function verDetalle(id){
-		ajax.getDetallePedido(id,function(data){
+/* 		ajax.getDetallePedido(id,function(data){
 			if(data.length==0){
 				dwr.util.setValue('pedidoId', 'Lo sentimos Su Consulta No Pudo Realizarse');
 				dwr.util.setValue('nombrePe', '');
@@ -146,8 +146,30 @@
 					$("#bodyAdd").append("<label>Comida: "+data[i][6]+" Cantidad: "+data[i][7]+" Precio: "+data[i][8]+"</label>");
 				}
 			}
-		});
+		}); */
+		ajax.getDetalleById(id, function(data){
+			if(data.length==0){
+				dwr.util.setValue('pedidoId', 'Lo sentimos Su Consulta No Pudo Realizarse');
+				dwr.util.setValue('nombrePe', '');
+				dwr.util.setValue('direccionPe', '');
+				dwr.util.setValue('fechaPe', '');
+				dwr.util.setValue('estadoPe', '');
+				dwr.util.setValue('totalPe','');
+				$("#bodyAdd").text('');
+			}else{
+				dwr.util.setValue('pedidoId', data[0][0]);
+				dwr.util.setValue('nombrePe', data[0][3]+" "+data[0][4]+" "+data[0][5]);
+				dwr.util.setValue('direccionPe', data[0][2]);
+				dwr.util.setValue('fechaPe', data[0][7]);
+				dwr.util.setValue('estadoPe', data[0][1]);
+				dwr.util.setValue('totalPe',data[0][6]);
+				$("#bodyAdd").text('');
+				for(var i=0; i<data.length;i++){
+					$("#bodyAdd").append("<label>Comida: "+data[i][8]+" Cantidad: "+data[i][10]+" Precio: "+data[i][9]+"</label>");
+				}
+		}});
 	}
+
 	</script>
 </body>
 </html>

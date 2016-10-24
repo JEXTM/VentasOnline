@@ -3,10 +3,13 @@
  */
 package com.webstotales.ventasOnline.domain.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.webstotales.ventasOnline.domain.Pedido;
 import com.webstotales.ventasOnline.domain.Usuario;
 
 /**
@@ -23,6 +26,9 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 	Usuario login(String usernmae, String password);
 	
 	@Query("select u.rol.idRol from Usuario u where u.idUsuario = ?1")
-	Integer getIdRol(Integer idUsuario); 
+	Integer getIdRol(Integer idUsuario);
+	
+	@Query("select u from Pedido u where u.usuario.idUsuario = ?1")
+	List<Pedido> getPedidoByUser(Integer idUsuario);
 	
 }

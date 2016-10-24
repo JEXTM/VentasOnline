@@ -23,4 +23,6 @@ public interface AjaxService {
 	public void insertCarrito(Integer idUsuario, Integer idComida);
 	public void borrarCarrito(Integer idCarrito);
 	public List<Detalle_Pedido_Model> getDetallePedido(Integer idPedido);
+	public Integer cambiarEstadoPedido(Integer estado,Integer idPedido);
+	public List<Object> getDetalleById(Integer idPedido);
 }

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
+import com.webstotales.ventasOnline.domain.Pedido;
 import com.webstotales.ventasOnline.domain.Usuario;
 
 import com.webstotales.ventasOnline.domain.repository.UsuarioRepository;
@@ -51,4 +51,9 @@ public class ManageClienteService {
 	public Integer getIdRol(Integer idUsuario){
 		return usuarioRepository.getIdRol(idUsuario);	
 	}
+	@Transactional(readOnly=true)
+	public List<Pedido> getPedidoByUser(Integer idUsuario){
+		return usuarioRepository.getPedidoByUser(idUsuario);
+	}
+	
 }

@@ -65,6 +65,7 @@ public class HomeController {
 	@RequestMapping(value="/logoff")
 	public String logOff(HttpServletRequest request){
 		request.getSession().removeAttribute("user");
+		request.getSession().removeAttribute("admin");
 		return "redirect:/";
 	}
 }

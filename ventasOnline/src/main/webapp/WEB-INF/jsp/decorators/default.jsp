@@ -13,6 +13,7 @@
 <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet" type="text/css" />
 <link href="<c:url value="/resources/css/default/default.css"/>"  rel="stylesheet" type="text/css" />
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+<link href="<c:url value="/resources/css/bootstrap-datepicker.min.css"/>"  rel="stylesheet" type="text/css" />
 <decorator:head/>
 <title>Sistema de Ventas Online <decorator:title/></title>
 </head>
@@ -30,12 +31,14 @@
                     <ul>  
                     <li><a href="<c:url value="/index"/>"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Home</span></a></li>
                     	<c:if test="${not empty admin }">
-	                        <li><a href="<c:url value="/mPedido?estado=I"/>"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Pedidos</span></a></li>
-	                        <li><a href="<c:url value="/client"/>"><i class="fa fa-bar-chart" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Cliente</span></a></li>
-	                        <li><a href="<c:url value="/ePedido"/>"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Estados</span></a></li>
-	                        <li><a href="<c:url value="/eClient"/>"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Lista de Usuarios</span></a></li>
+	                        <li><a href="<c:url value="/mPedido?estado=I"/>"><i class="fa fa-list" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Pedidos</span></a></li>
+	                        <li><a href="<c:url value="/client"/>"><i class="fa fa-user-plus" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Cliente</span></a></li>
+	                        <li><a href="<c:url value="/ePedido"/>"><i class="fa fa-flag" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Estados</span></a></li>
+	                        <li><a href="<c:url value="/eClient"/>"><i class="fa fa-users" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Lista de Usuarios</span></a></li>
+	                        <li><a href="<c:url value="/masVendidos"/>"><i class="fa fa-level-up" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Mas Vendidos</span></a></li>
                          </c:if>
-                         <li><a href="<c:url value="/platos"/>"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Platos</span></a></li>
+                         <li><a href="<c:url value="/platos"/>"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Platos</span></a></li>
+                         <li><a href="<c:url value="/cPedidos"/>"><i class="fa fa-history" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Consultar Pedidos</span></a></li>
                         <!-- <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Setting</span></a></li> -->
                     </ul>
                 </div>
@@ -55,9 +58,11 @@
                                     </button>
                                 </div>
                             </nav>
-                          <div class="search hidden-xs hidden-sm">
-                                <input type="text" placeholder="Buscar Pedido" id="searchPedido" onkeydown="validar(this)">
-                            </div> 
+                            <c:if test="${not empty admin }">
+                          		<div class="search hidden-xs hidden-sm">
+                                	<input type="text" placeholder="Buscar Pedido" id="searchPedido" onkeydown="validar(this)">
+                            	</div> 
+                            </c:if>
                         </div>
                         <div class="col-md-5">
                             <div class="header-rightside">
@@ -73,12 +78,12 @@
 								</c:if>
                                     <li>
                                         <a href="<c:url value="/carrito"/>" class="icon-info">
-                                            <i class="fa fa-bell" aria-hidden="true"></i>
+                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                             <span class="label label-primary" id="idCarrito">0</span>
                                         </a>
                                     </li>
                                     <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<c:url value="/resources/img/Jorge Flores.jpg"/>" alt="user">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<c:url value="/resources/img/Jorge Flores.png"/>" alt="user">
                                             <b class="caret"></b></a>
                                         <ul class="dropdown-menu">
                                             <li>
@@ -86,11 +91,14 @@
                                               
                                                     <span></span>
                                                     <p class="text-muted small">
-                                                        Jorge_Flores5@umsp.pe
+                                                       <c:if test="${not empty user }">
+                                                       		<c:out value="${user.nombre }"/>,<c:out value="${user.apellidoPat }"/> <c:out value="${user.apellidoMat }"/> 
+                                                       	</c:if> 
                                                     </p>
                                                     <div class="divider">
                                                     </div>
-                                                    <a href="<c:url value="/logoff"/>" class="view btn-sm active">Cerrar Session</a>
+                                                    <a href="<c:url value="/mUsuario"/>" class="btn btn-sm">Cuenta</a>
+                                                    <a href="<c:url value="/logoff"/>" class="btn btn-sm active">Cerrar Session</a>
                                                 </div>
                                             </li>
                                         </ul>
@@ -146,6 +154,9 @@
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src='<c:url value="/resources/js/bootstrap.min.js"/>'></script>
     <script type="text/javascript" src='<c:url value="/resources/js/dataTables.bootstrap.min.js"/>'></script>
+    <script type="text/javascript" src='<c:url value="/resources/js/bootstrap-datepicker.min.js"/>'></script>
+    <script type="text/javascript" src='<c:url value="/resources/js/bootstrap-datepicker.es.min.js"/>'></script>
+    
 	<script>
 	$(document).ready(function(){
 		   $('[data-toggle="offcanvas"]').click(function(){
@@ -172,7 +183,7 @@
 		});
 	}
 	function getCarrito(){
-		ajax.countByUsuario(1,function(data){
+		ajax.countByUsuario(${user.idUsuario},function(data){
 			if(data>0){
 			$("#idCarrito").text(data);
 			$("#idCarrito").attr("class","label label-danger");
@@ -185,6 +196,12 @@
 	    $('#dataTable').DataTable();
 	} );
 
+	$('#fechaNac').datepicker({
+	    format: "dd/mm/yyyy",
+	    todayBtn: true,
+	    language: "es",
+	    autoclose: true
+	});
 	</script>
 </body>
 </html>

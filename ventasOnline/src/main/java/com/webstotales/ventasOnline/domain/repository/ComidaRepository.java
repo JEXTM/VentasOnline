@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.webstotales.ventasOnline.domain.Comida;
+import com.webstotales.ventasOnline.domain.model.MasVendidosModel;
 
 /**
  * @author JEXTM
@@ -19,4 +20,7 @@ import com.webstotales.ventasOnline.domain.Comida;
 public interface ComidaRepository extends JpaRepository<Comida, Integer>{
 	@Query("select u from Comida u where u.tipoComida.id = ?1")
 	List<Comida> findByType(Integer idTipo);
+	
+	@Query("select u.pk.comida.idComida, count(u.unidades) from Detalle_Pedido u group by u.pk.comida.idComida order by 2 desc")
+	List<Object> getMasVendidos();
 }

@@ -3,12 +3,21 @@
  */
 package com.webstotales.ventasOnline.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+
+import com.webstotales.ventasOnline.domain.Comida;
+import com.webstotales.ventasOnline.domain.model.ComidaCountModel;
 
 import com.webstotales.ventasOnline.service.ManageComidaService;
 import com.webstotales.ventasOnline.service.ManagePlatosService;
@@ -55,5 +64,25 @@ public class PlatoController {
 		}
 		return model;
 	}
-	
+	@RequestMapping(value="/masVendidos")
+	public ModelAndView masVendidos(){
+		ModelAndView model = new ModelAndView("user/masVendidos");
+		List<Object> platos = managePlatosService.getMasVendidos();
+		if (platos.isEmpty()) {
+			model.addObject("mensaje", "No se encontraron platos");
+		}else{
+			List<ComidaCountModel> comidas = new ArrayList<ComidaCountModel>();
+			for (Object masVendidosModel : platos) {
+			//for(int i=0;i<platos.size();i++){
+				ComidaCountModel comidaCountModel = new ComidaCountModel();
+				Object[] objetos = (Object[])masVendidosModel;
+		        comidaCountModel.setCantidad(Long.parseLong(objetos[1].toString()));
+		        Comida comida = manageComidaService.findOne(Integer.parseInt(objetos[0].toString()));
+		        comidaCountModel.setComida(comida);			    
+				comidas.add(comidaCountModel);
+			}
+			model.addObject("platos", comidas);
+		}
+		return model;
+	}
 }
