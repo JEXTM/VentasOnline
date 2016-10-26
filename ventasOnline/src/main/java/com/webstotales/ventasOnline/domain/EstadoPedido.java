@@ -15,7 +15,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="t_estadoPedido")
+@Table(name="t_estadopedido")
 public class EstadoPedido {
 	/**
 	 * Generate By: JEXTM 27 set. 2016

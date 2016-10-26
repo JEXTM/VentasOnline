@@ -32,7 +32,7 @@
 					<c:forEach items="${comidas}" var="plato">
 						<tr>
 							<td class="hidden"><input type="hidden" value="${plato.comida.idComida}" name="idComida" id="idComida"></td>
-	 						<td><img class="img-responsive img-size" src="http://comidasperuanas.net/wp-content/uploads/2015/07/Arroz-con-Pollo-Peruano-730x430.jpg"/></td> 
+	 						<td><img class="img-responsive img-size" src="resources/img/platos/<c:out value="${plato.comida.idComida }"/>.jpg"/></td> 
 							<td><c:out value="${plato.comida.idComida}"/></td>
 							<td><c:out value="${plato.comida.nombre }"/></td>
 							<td><c:out value="${plato.comida.precio }"/></td>

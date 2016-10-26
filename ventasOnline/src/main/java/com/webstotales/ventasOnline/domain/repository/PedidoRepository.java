@@ -35,5 +35,11 @@ public interface PedidoRepository extends JpaRepository<Pedido, Integer>{
 	@Modifying
 	@Query("update Pedido set estado.idPedido=?1 where idPedido = ?2")
 	Integer updateEstado(Integer estado, Integer idPedido);
+	
+	@Query("select sum(u.precio ) from Detalle_Pedido u where u.pk.pedido.idPedido = ?1")
+	Double getImportetotalPedido(Integer idPedido);
+	
+	@Query("select count(u) from Pedido u where u.usuario.idUsuario=?1")
+	Long getCantidadPedidos(Integer idCliente);
 }
 

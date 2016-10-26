@@ -34,6 +34,7 @@ import com.webstotales.ventasOnline.domain.Pedido;
 import com.webstotales.ventasOnline.domain.Usuario;
 import com.webstotales.ventasOnline.domain.ids.Detalle_PedidoId;
 import com.webstotales.ventasOnline.domain.model.ComidaModel;
+import com.webstotales.ventasOnline.domain.model.ReportePedidoModel;
 import com.webstotales.ventasOnline.service.ManageCarritoService;
 import com.webstotales.ventasOnline.service.ManageClienteService;
 import com.webstotales.ventasOnline.service.ManageComidaService;
@@ -230,12 +231,14 @@ public class PedidoController {
 			det_pedido.setPk(id);
 			det_pedido.setUnidades(cont);
 			det_pedido.setPrecio(comida.getPrecio()*cont);
-			importe+=comida.getPrecio()*cont;
+			//importe+=comida.getPrecio()*cont;
 			maDetalle_PedidoService.save(det_pedido);
 		}
+		importe = maPedidos.getImportetotalPedido(pedido.getIdPedido());
 		newPedido.setImporte(importe);
 		maPedidos.save(newPedido);
 		maCarritoService.DeleteCarrito(user.getIdUsuario());
+		model.addObject("mensaje", "Pedido Creado Corectamente");
 		return model;
 	}
 	
@@ -268,6 +271,18 @@ public class PedidoController {
 		
 		
 		maPedidos.save(pedido);
+		return model;
+	}
+	@RequestMapping(value="/rPedido", method=RequestMethod.GET)
+	public ModelAndView reportePedidos(HttpServletRequest request){
+		ModelAndView model = new ModelAndView("user/reportePedidos");
+		List<Usuario> usuarios = maClienteService.getAll();
+		List<ReportePedidoModel> reportes = new ArrayList<ReportePedidoModel>();
+		for (Usuario usuario : usuarios) {
+			ReportePedidoModel report = new ReportePedidoModel(usuario, maPedidos.getCantidadPedidos(usuario.getIdUsuario()));
+			reportes.add(report);
+		}
+		model.addObject("reportes", reportes);
 		return model;
 	}
 

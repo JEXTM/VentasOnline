@@ -15,7 +15,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="t_tipoComida")
+@Table(name="t_tipocomida")
 public class TipoComida {
 	/**
 	 * Generate By: JEXTM 1 oct. 2016

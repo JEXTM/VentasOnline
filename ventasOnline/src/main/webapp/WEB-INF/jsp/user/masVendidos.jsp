@@ -30,7 +30,8 @@
 			<tbody>
 				<c:forEach items="${platos}" var="plato">
 					<tr>
- 						<td><img class="img-responsive img-size" src="resources/img/platos/<c:out value="${plato.comida.idComida}"/>.jpg"/></td> 
+ 						<%-- <td><img class="img-responsive img-size" src="resources/img/platos/<c:out value="${plato.comida.idComida}"/>.jpg"/></td> --%>
+						<td><img class="img-responsive img-size" src="resources/img/platos/<c:out value="${plato.comida.idComida }"/>.jpg"/></td>
 						<td><c:out value="${plato.comida.idComida}"/></td>
 						<td><c:out value="${plato.comida.nombre }"/></td>
 						<td><c:out value="${plato.comida.precio }"/></td>

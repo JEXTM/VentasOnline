@@ -35,7 +35,8 @@
 	                        <li><a href="<c:url value="/client"/>"><i class="fa fa-user-plus" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Cliente</span></a></li>
 	                        <li><a href="<c:url value="/ePedido"/>"><i class="fa fa-flag" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Estados</span></a></li>
 	                        <li><a href="<c:url value="/eClient"/>"><i class="fa fa-users" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Lista de Usuarios</span></a></li>
-	                        <li><a href="<c:url value="/masVendidos"/>"><i class="fa fa-level-up" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Mas Vendidos</span></a></li>
+	                        <li><a href="<c:url value="/masVendidos"/>"><i class="fa fa-level-up" aria-hidden="true"></i><span class="hidden-xs hidden-sm">P. Mas Vendidos</span></a></li>
+	                        <li><a href="<c:url value="/rPedido"/>"><i class="fa fa-level-up" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Top Client</span></a></li>
                          </c:if>
                          <li><a href="<c:url value="/platos"/>"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Platos</span></a></li>
                          <li><a href="<c:url value="/cPedidos"/>"><i class="fa fa-history" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Consultar Pedidos</span></a></li>
@@ -143,6 +144,45 @@
                 <div class="modal-footer">
                     <button type="button" class="cancel" data-dismiss="modal">Close</button>
                     <button type="button" class="add-project" data-dismiss="modal">Save</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    
+        <!-- Modal -->
+    <div id="modalRegistrar" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header login-header">
+                    <button type="button" class="close" data-dismiss="modal">X</button>
+                    <h4 class="modal-title">Registrar</h4>
+                </div>
+                <div class="modal-body">
+                            <input type="text" placeholder=Nombre id="cNombre">
+                            <input type="text" placeholder="Apellido Paterno" id="cApePat">
+                            <input type="text" placeholder="Apellido Materno" id="cApeMat">
+                            <input type="number" placeholder="DNI" id="cDNI">
+                            <input type="email" placeholder="Email" id="cEmail">
+                            <input type="text" placeholder="Direccion" id="cDireccion">
+                            <input type="text" placeholder="Usuario" id="cUsuario">
+                            <input type="password" placeholder="Contraseña" id="cPassword">
+                            <input type="text" placeholder="Peso (KG.)" id="cPeso">
+                            <input type="text" placeholder="Talla (M.)" id="cTalla">
+                            <select id="cSexo" class="form-control">
+                            	<option value="M">Masculino</option>
+                            	<option value="F">Femenino</option>
+                            </select>
+                            <input type="number" placeholder="Celular" id="cCelular">
+                            <input type="text" placeholder="Fecha De Nacimiento DD/MM/YYYY" id="fechaNac">
+                    
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="cancel" data-dismiss="modal">Close</button>
+                    <button type="button" class="add-project" data-dismiss="modal" onclick="return save()">Save</button>
                 </div>
             </div>
 

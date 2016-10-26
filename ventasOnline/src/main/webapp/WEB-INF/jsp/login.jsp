@@ -20,9 +20,43 @@
 		<h1 class="form-signin-heading text-muted">Login</h1>
 		<form:input path="usuario" cssClass="form-control" placeholder="Usuario" required="required"/>
 		<form:password path="contrasena" cssClass="form-control" placeholder="Contraseña" required="required"/>
-		<form:button class="btn btn-lg btn-danger btn-block">Enviar</form:button>
+		<form:button class="btn btn-lg btn-danger">Enviar</form:button>
+		<button class="btn btn-lg btn-danger" onclick="return registrar()" data-toggle="modal" data-target="#modalRegistrar">Registrar</button>
 	</form:form>
 
 </div> 
+
+
+
+<script>
+function registrar(){
+	return false;
+}
+function save(){
+	var nombre = $("#cNombre").val();
+	var apePat = $("#cApePat").val();
+	var apeMat = $("#cApeMat").val();
+	var dni = $("#cDNI").val();
+	var email = $("#cEmail").val();
+	var direccion = $("#cDireccion").val();
+	var usuario = $("#cUsuario").val();
+	var password = $("#cPassword").val();
+	var peso = $("#cPeso").val();
+	var talla = $("#cTalla").val();
+	var sexo = $("#cSexo").val();
+	var celular = $("#cCelular").val();
+	var fechaNac = $("#fechaNac").val();
+	
+	ajax.saveUsuario(nombre,apePat,apeMat,dni,email,direccion,usuario,password,peso,talla,sexo,celular,fechaNac,function(data){
+		if(data==1){
+			alert("Gracias Por Registrarse al Sistema");
+			location.reload();
+		}else{
+			alert("Llene Datos correctamente");
+		}
+	});
+}
+
+</script>
 </body>
 </html>

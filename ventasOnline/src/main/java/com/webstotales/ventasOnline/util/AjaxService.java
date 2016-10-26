@@ -3,6 +3,7 @@
  */
 package com.webstotales.ventasOnline.util;
 
+import java.util.Date;
 import java.util.List;
 
 import com.webstotales.ventasOnline.domain.Detalle_Pedido;
@@ -25,4 +26,5 @@ public interface AjaxService {
 	public List<Detalle_Pedido_Model> getDetallePedido(Integer idPedido);
 	public Integer cambiarEstadoPedido(Integer estado,Integer idPedido);
 	public List<Object> getDetalleById(Integer idPedido);
+	public Integer saveUsuario(String nombre,String apePat,String apeMat, Integer dni, String email,String direccion, String usuario, String contra, Double peso, Double talla, Character sexo, String celular, String fechaNac);
 }

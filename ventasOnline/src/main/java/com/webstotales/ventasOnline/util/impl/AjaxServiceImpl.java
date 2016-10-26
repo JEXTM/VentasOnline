@@ -5,6 +5,7 @@ package com.webstotales.ventasOnline.util.impl;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +13,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.webstotales.ventasOnline.domain.Carrito;
 import com.webstotales.ventasOnline.domain.Detalle_Pedido;
-import com.webstotales.ventasOnline.domain.EstadoPedido;
+import com.webstotales.ventasOnline.domain.Distrito;
 import com.webstotales.ventasOnline.domain.Pedido;
+import com.webstotales.ventasOnline.domain.Rol;
+import com.webstotales.ventasOnline.domain.Usuario;
 import com.webstotales.ventasOnline.domain.model.Detalle_Pedido_Model;
 import com.webstotales.ventasOnline.domain.repository.CarritoRepository;
 import com.webstotales.ventasOnline.domain.repository.Detalle_pedidoRepository;
 import com.webstotales.ventasOnline.domain.repository.PedidoRepository;
+import com.webstotales.ventasOnline.domain.repository.UsuarioRepository;
 import com.webstotales.ventasOnline.util.AjaxService;
 
 /**
@@ -33,6 +37,9 @@ public class AjaxServiceImpl implements AjaxService{
 	
 	@Autowired
 	Detalle_pedidoRepository detallePedidoRepository;
+	
+	@Autowired
+	UsuarioRepository usuariorepository;
 	/* 
 	 * Descripcion: 
 	 *	@param :
@@ -139,6 +146,22 @@ public class AjaxServiceImpl implements AjaxService{
 	@Override
 	public List<Object> getDetalleById(Integer idPedido) {
 		return detallePedidoRepository.getDetalleById(idPedido);
+	}
+	@Override
+	public Integer saveUsuario(String nombre, String apePat, String apeMat, Integer dni, String email, String direccion,
+			String usuario, String contra, Double peso, Double talla, Character sexo, String celular, String fechaNac) {
+		int ano = Integer.parseInt(fechaNac.substring(6));
+		int mes = Integer.parseInt(fechaNac.substring(3, 5));
+		int dia = Integer.parseInt(fechaNac.substring(0, 2));
+		@SuppressWarnings("deprecation")
+		Date fechaNacimiento = new Date((ano-1900), mes, dia);
+		Usuario user = new Usuario(nombre, apeMat, apeMat, direccion, "1", sexo, fechaNacimiento, celular, email, "", new Distrito(1, ""), peso, talla,((peso/Math.pow(talla, 2.0))), dni, usuario, contra, 'A', new Rol(1,"",'A'));
+		try{
+		usuariorepository.saveAndFlush(user);
+		}catch (Exception e) {
+			return 0;
+		}
+		return 1;
 	}
 	
 }

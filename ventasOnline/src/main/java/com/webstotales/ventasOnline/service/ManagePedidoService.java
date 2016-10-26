@@ -31,7 +31,6 @@ public class ManagePedidoService{
 	public Long getIngresados(){
 		return pedidoRepository.getEstadoCount(1);
 	}
-	
 	@Transactional(readOnly=true)
 	public List<Pedido> getByEstado(Integer estado){
 		return pedidoRepository.getByEstado(estado);
@@ -64,6 +63,14 @@ public class ManagePedidoService{
 	public Pedido save(Pedido pedido)
 	{
 		return pedidoRepository.saveAndFlush(pedido);
+	}
+	@Transactional(readOnly=true)
+	public Double getImportetotalPedido(Integer idPedido){
+		return pedidoRepository.getImportetotalPedido(idPedido);
+	}
+	@Transactional(readOnly=true)
+	public Long getCantidadPedidos(Integer idUsuario){
+		return pedidoRepository.getCantidadPedidos(idUsuario);
 	}
 
 }

@@ -3,6 +3,8 @@
  */
 package com.webstotales.ventasOnline.domain;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 
 import javax.persistence.Entity;
@@ -103,6 +105,20 @@ public class Usuario extends Persona{
 	 */
 	public Usuario(String usuario, String contrasena, Character estado, Rol rol) {
 		super();
+		this.usuario = usuario;
+		this.contrasena = contrasena;
+		this.estado = estado;
+		this.rol = rol;
+	}
+
+
+
+	public Usuario(String nombre, String apellidoPat, String apellidoMat, String direccion,
+			String url, Character sexo, Date fechaNac, String celular, String correo, String referencia,
+			Distrito distrito, Double peso, Double talla, Double idmc, Integer dni, String usuario, String contrasena,
+			Character estado, Rol rol) {
+		super( nombre, apellidoPat, apellidoMat, direccion, url, sexo, fechaNac, celular, correo, referencia,
+				distrito, peso, talla, idmc, dni);
 		this.usuario = usuario;
 		this.contrasena = contrasena;
 		this.estado = estado;
