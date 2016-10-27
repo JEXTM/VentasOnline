@@ -26,8 +26,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class JpaConfig implements DisposableBean{
 	 private static final String PROPERTY_NAME_DATABASE_DRIVER = "com.mysql.jdbc.Driver";
-	 //private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3306/ventasOnline";
-	 private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://mysql22104-jextm.jl.serv.net.mx/ventasOnline";
+	 private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://localhost:3306/ventasOnline";
+	 //private static final String PROPERTY_NAME_DATABASE_URL = "jdbc:mysql://mysql22104-jextm.jl.serv.net.mx/ventasOnline";
 	 private static final String PROPERTY_NAME_DATABASE_USERNAME = "JEXTM";
 	 private static final String PROPERTY_NAME_DATABASE_PASSWORD = "jextm";
 	    		

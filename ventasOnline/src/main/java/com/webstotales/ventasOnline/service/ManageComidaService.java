@@ -30,5 +30,9 @@ public class ManageComidaService {
 	public List<Comida> findByType(Integer idTipo){
 		return comidaRepository.findByType(idTipo);
 	}
+	@Transactional(readOnly=true)
+	public Long getComidaFrecuente(Integer idComida,Integer idUsuario){
+		return comidaRepository.getComidaFrecuente(idComida, idUsuario);		
+	}
 
 }

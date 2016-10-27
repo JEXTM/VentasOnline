@@ -23,4 +23,7 @@ public interface ComidaRepository extends JpaRepository<Comida, Integer>{
 	
 	@Query("select u.pk.comida.idComida, count(u.unidades) from Detalle_Pedido u group by u.pk.comida.idComida order by 2 desc")
 	List<Object> getMasVendidos();
+	
+	@Query("select count(u.pk.comida.idComida) from Detalle_Pedido u where u.pk.comida.idComida=?1 and u.pk.pedido.usuario.idUsuario=?2")
+	Long getComidaFrecuente(Integer idComida,Integer idUsuario);
 }

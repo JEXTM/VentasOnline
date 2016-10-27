@@ -41,7 +41,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			<button class="btn btn-info btn-block">Generar Comprobante</button>
+			<button class="btn btn-info btn-block" onclick="return validate()">Generar Comprobante</button>
 		</form:form>
 		</c:when>
 		<c:otherwise>
@@ -55,6 +55,13 @@
 				row.remove();
 			});
 			return false;
+		}
+		function validate(){
+			var elements = document.getelementsbyname("idComida");
+			if(elements. length>10){
+				alert("No puede exeder el maximo");
+				return false
+			}
 		}
 	</script>
 </body>

@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import com.webstotales.ventasOnline.domain.Comida;
+import com.webstotales.ventasOnline.domain.Usuario;
 import com.webstotales.ventasOnline.domain.model.ComidaCountModel;
 
 import com.webstotales.ventasOnline.service.ManageComidaService;
@@ -40,9 +41,17 @@ public class PlatoController {
 	private ManageTipoComidaservice manageTipoComidaService;
 	
 	@RequestMapping(value="/platos")
-	public ModelAndView getPlatos(){
+	public ModelAndView getPlatos(HttpServletRequest request){
 		ModelAndView model = new ModelAndView("user/platos");
-		model.addObject("platos", managePlatosService.findAll());
+		List<Comida> comidas = managePlatosService.findAll();
+		List<ComidaCountModel> platos = new ArrayList<ComidaCountModel>();
+		Usuario user = (Usuario) request.getSession().getAttribute("user");
+		for (Comida comida : comidas) {
+			Long cantidad = manageComidaService.getComidaFrecuente(comida.getIdComida(), user.getIdUsuario());
+			ComidaCountModel count = new ComidaCountModel(comida,cantidad);
+			platos.add(count);
+		}
+		model.addObject("platos", platos);
 		model.addObject("tipos", manageTipoComidaService.findAll());
 		return  model;
 	}

@@ -42,13 +42,21 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${platos}" var="plato">
-					<tr>
+				<c:choose>
+					<c:when test="${plato.cantidad > 3 }">
+						<c:set var="can" value="danger"/>
+					</c:when>
+					<c:otherwise>
+						<c:set var="can" value=""/>
+					</c:otherwise>
+				</c:choose>
+					<tr class="<c:out value="${can}"/>">
  						<%-- <td><img class="img-responsive img-size" src="resources/img/platos/<c:out value="${plato.idComida}"/>.jpg"/></td> --%>
- 						<td><img class="img-responsive img-size" src="resources/img/platos/<c:out value="${plato.idComida }"/>.jpg"/></td> 
-						<td><c:out value="${plato.idComida}"/></td>
-						<td><c:out value="${plato.nombre }"/></td>
-						<td><c:out value="${plato.precio }"/></td>
-						<td><button  class="btn btn-success" onclick="agregarCarrito(<c:out value="${plato.idComida }"/>)">Agregar al Carrito </button></td>
+ 						<td><img class="img-responsive img-size" src="resources/img/platos/<c:out value="${plato.comida.idComida }"/>.jpg"/></td> 
+						<td><c:out value="${plato.comida.idComida}"/></td>
+						<td><c:out value="${plato.comida.nombre }"/></td>
+						<td><c:out value="${plato.comida.precio }"/></td>
+						<td><button  class="btn btn-success" onclick="agregarCarrito(<c:out value="${plato.comida.idComida }"/>)">Agregar al Carrito </button></td>
 					</tr>
 				</c:forEach>
 			</tbody>
