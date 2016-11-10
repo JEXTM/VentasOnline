@@ -37,6 +37,8 @@
 	                        <li><a href="<c:url value="/eClient"/>"><i class="fa fa-users" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Lista de Usuarios</span></a></li>
 	                        <li><a href="<c:url value="/masVendidos"/>"><i class="fa fa-level-up" aria-hidden="true"></i><span class="hidden-xs hidden-sm">P. Mas Vendidos</span></a></li>
 	                        <li><a href="<c:url value="/rPedido"/>"><i class="fa fa-level-up" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Top Client</span></a></li>
+	                        <li><a href="<c:url value="/aPlato"/>"><i class="fa fa-plus-circle" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Agregar Plato</span></a></li>
+	                        <%--  <li><a href="<c:url value="/rPedido"/>"><i class="fa fa-ban" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Rechazos</span></a></li> --%>
                          </c:if>
                          <li><a href="<c:url value="/platos"/>"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Platos</span></a></li>
                          <li><a href="<c:url value="/cPedidos"/>"><i class="fa fa-history" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Consultar Pedidos</span></a></li>
@@ -177,6 +179,7 @@
                             	<option value="F">Femenino</option>
                             </select>
                             <input type="number" placeholder="Celular" id="cCelular">
+                            <input type="number" placeholder="# Tarjeta" id="cTarjeta">
                             <input type="text" placeholder="Fecha De Nacimiento DD/MM/YYYY" id="fechaNac">
                     
                     </div>

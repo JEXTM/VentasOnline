@@ -16,11 +16,13 @@ import com.webstotales.ventasOnline.domain.Detalle_Pedido;
 import com.webstotales.ventasOnline.domain.Distrito;
 import com.webstotales.ventasOnline.domain.Pedido;
 import com.webstotales.ventasOnline.domain.Rol;
+import com.webstotales.ventasOnline.domain.Tarjeta;
 import com.webstotales.ventasOnline.domain.Usuario;
 import com.webstotales.ventasOnline.domain.model.Detalle_Pedido_Model;
 import com.webstotales.ventasOnline.domain.repository.CarritoRepository;
 import com.webstotales.ventasOnline.domain.repository.Detalle_pedidoRepository;
 import com.webstotales.ventasOnline.domain.repository.PedidoRepository;
+import com.webstotales.ventasOnline.domain.repository.TarjetaRepository;
 import com.webstotales.ventasOnline.domain.repository.UsuarioRepository;
 import com.webstotales.ventasOnline.util.AjaxService;
 
@@ -40,6 +42,9 @@ public class AjaxServiceImpl implements AjaxService{
 	
 	@Autowired
 	UsuarioRepository usuariorepository;
+	
+	@Autowired
+	TarjetaRepository tarjetaRepository;
 	/* 
 	 * Descripcion: 
 	 *	@param :
@@ -149,15 +154,28 @@ public class AjaxServiceImpl implements AjaxService{
 	}
 	@Override
 	public Integer saveUsuario(String nombre, String apePat, String apeMat, Integer dni, String email, String direccion,
-			String usuario, String contra, Double peso, Double talla, Character sexo, String celular, String fechaNac) {
+			String usuario, String contra, Double peso, Double talla, Character sexo, String celular, String fechaNac,String tarjeta) {
 		int ano = Integer.parseInt(fechaNac.substring(6));
 		int mes = Integer.parseInt(fechaNac.substring(3, 5));
 		int dia = Integer.parseInt(fechaNac.substring(0, 2));
 		@SuppressWarnings("deprecation")
 		Date fechaNacimiento = new Date((ano-1900), mes, dia);
-		Usuario user = new Usuario(nombre, apeMat, apeMat, direccion, "1", sexo, fechaNacimiento, celular, email, "", new Distrito(1, ""), peso, talla,((peso/Math.pow(talla, 2.0))), dni, usuario, contra, 'A', new Rol(1,"",'A'));
+		Tarjeta numeroTarjeta = null;
 		try{
-		usuariorepository.saveAndFlush(user);
+			numeroTarjeta = tarjetaRepository.findByNumero(tarjeta);
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		if (numeroTarjeta==null) {
+			return 0;
+		}
+		if (usuariorepository.countUsername(usuario)>0) {
+			return 0;
+		}
+		Usuario user = new Usuario(nombre, apeMat, apeMat, direccion, "1", sexo, fechaNacimiento, celular, email, "", new Distrito(1, ""), peso, talla,((peso/Math.pow(talla, 2.0))), dni, usuario, contra, 'A', new Rol(1,"",'A'));
+		user.setTarjeta(numeroTarjeta);
+		try{
+			usuariorepository.saveAndFlush(user);
 		}catch (Exception e) {
 			return 0;
 		}

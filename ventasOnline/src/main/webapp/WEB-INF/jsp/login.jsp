@@ -46,13 +46,13 @@ function save(){
 	var sexo = $("#cSexo").val();
 	var celular = $("#cCelular").val();
 	var fechaNac = $("#fechaNac").val();
-	
-	ajax.saveUsuario(nombre,apePat,apeMat,dni,email,direccion,usuario,password,peso,talla,sexo,celular,fechaNac,function(data){
+	var tarjeta = $("#cTarjeta").val();
+	ajax.saveUsuario(nombre,apePat,apeMat,dni,email,direccion,usuario,password,peso,talla,sexo,celular,fechaNac,tarjeta,function(data){
 		if(data==1){
 			alert("Gracias Por Registrarse al Sistema");
 			location.reload();
 		}else{
-			alert("Llene Datos correctamente");
+			alert("Llene Datos correctamente, El nombre de Usuario podria ya estar en uso o la tarjeta podria ser no valida");
 		}
 	});
 }

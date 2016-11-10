@@ -21,8 +21,10 @@ import com.sun.org.apache.xpath.internal.operations.Mod;
 import com.webstotales.ventasOnline.domain.EstadoPedido;
 import com.webstotales.ventasOnline.domain.Pedido;
 import com.webstotales.ventasOnline.domain.Rol;
+import com.webstotales.ventasOnline.domain.Tarjeta;
 import com.webstotales.ventasOnline.domain.Usuario;
 import com.webstotales.ventasOnline.service.ManageClienteService;
+import com.webstotales.ventasOnline.service.ManageTarjetaService;
 
 /**
  * @author JEXTM
@@ -35,14 +37,16 @@ public class ClienteController {
 	 */
 	@Autowired
 	private ManageClienteService maClientservice;
+	@Autowired
+	private ManageTarjetaService maTarjetaService;
 	
 	@RequestMapping(value="/client")
 	public ModelAndView index(){
 		return new ModelAndView("user/client","clModel", new Usuario());
 	}
 	
-	@RequestMapping(value="/aClient",method = RequestMethod.POST)
-	public ModelAndView addClient(@Valid @ModelAttribute("clModel") Usuario cliente, BindingResult result){
+	@RequestMapping(value = "/aClient", method = RequestMethod.POST)
+	public ModelAndView addClient(@Valid @ModelAttribute("clModel") Usuario cliente, BindingResult result) {
 		ModelAndView model = new ModelAndView("user/index");
 		cliente.setRol(new Rol(1,"",'A'));
 		cliente.setEstado('A');
@@ -56,8 +60,29 @@ public class ClienteController {
 			model.setViewName("user/client");
 			return model;
 		}
+		String numero = cliente.getTarjeta().getNumero();
+		Tarjeta tarjeta;
+		try{
+			tarjeta = maTarjetaService.findByNumero(numero);
+		}catch (Exception e) {
+			tarjeta=null;
+			System.out.println(e.getMessage());
+		}
+		if (tarjeta!=null) {
+			cliente.setTarjeta(tarjeta);
+		}else{
+			model.addObject("mensaje", "Ingrese Tarjeta Valida");
+			model.setViewName("user/client");
+			return model;
+		}
 		cliente.setIdmc(cliente.getPeso()/Math.pow(cliente.getTalla(), 2.0));
+		try{
 		maClientservice.saveClient(cliente);
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+			model.addObject("mensaje", "Tarjeta Ya Registrada");
+			return model;
+		}
 		model.addObject("moClient",cliente);
 		model.addObject("mensaje", "Se Agrego Correctamente");
 		return model;
@@ -85,9 +110,12 @@ public class ClienteController {
 			model.addObject("mensaje", "Llene los datos correctamente");
 			return model;
 		}
+		Tarjeta tarjeta = maTarjetaService.getTarjetaByIdUsuario(cliente.getIdUsuario());
+		
 		cliente.setIdmc(cliente.getPeso()/Math.pow(cliente.getTalla(), 2.0));
 		cliente.setRol(new Rol(maClientservice.getIdRol(user.getIdUsuario()), "", 'A'));
 		cliente.setEstado('A');
+		cliente.setTarjeta(tarjeta);
 		model.addObject("mensaje", "Se Modifico Correctamente");
 		maClientservice.saveClient(cliente);
 		return model;

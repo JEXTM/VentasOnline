@@ -117,8 +117,13 @@
 			<div class="col-md-3">
 					<form:input path="fechaNac" placeholder="DD/MM/YYYY" cssClass="form-control" required="required"/>
 			</div>
-			
-		</div>		
+			<div class="col-md-3">
+				<label for="numero">Numero De Tarjeta</label>
+			</div>
+			<div class="col-md-3">
+					<form:input path="tarjeta.numero" type="number" placeholder="" cssClass="form-control" required="required"/>
+			</div>		
+		</div>				
 		<br>
 		<br>
 		<div class="col-md-4"></div>

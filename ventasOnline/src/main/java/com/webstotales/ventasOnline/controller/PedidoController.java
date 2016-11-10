@@ -31,6 +31,7 @@ import com.webstotales.ventasOnline.domain.Comida;
 import com.webstotales.ventasOnline.domain.Detalle_Pedido;
 import com.webstotales.ventasOnline.domain.EstadoPedido;
 import com.webstotales.ventasOnline.domain.Pedido;
+import com.webstotales.ventasOnline.domain.Tarjeta;
 import com.webstotales.ventasOnline.domain.Usuario;
 import com.webstotales.ventasOnline.domain.ids.Detalle_PedidoId;
 import com.webstotales.ventasOnline.domain.model.ComidaModel;
@@ -41,6 +42,7 @@ import com.webstotales.ventasOnline.service.ManageComidaService;
 import com.webstotales.ventasOnline.service.ManageDetalle_PedidoService;
 import com.webstotales.ventasOnline.service.ManageEstadoPedidoService;
 import com.webstotales.ventasOnline.service.ManagePedidoService;
+import com.webstotales.ventasOnline.service.ManageTarjetaService;
 
 /**
  * @author JEXTM
@@ -52,6 +54,8 @@ public class PedidoController {
 	/**
 	 * Generate By: JEXTM 10 set. 2016
 	 */
+	@Autowired
+	ManageTarjetaService maTarjetaService;
 	@Autowired
 	ManagePedidoService maPedidos;
 	@Autowired
@@ -236,7 +240,14 @@ public class PedidoController {
 		}
 		importe = maPedidos.getImportetotalPedido(pedido.getIdPedido());
 		newPedido.setImporte(importe);
+		Tarjeta tarjeta =maTarjetaService.getTarjetaByIdUsuario(user.getIdUsuario());
+		if (tarjeta.getSaldo()<0) {
+			model.addObject("mensaje", "Usted No Dispone De Saldo Para Pedidos");
+			return model;
+		}
 		maPedidos.save(newPedido);
+		tarjeta.setSaldo(tarjeta.getSaldo()-importe);
+		maTarjetaService.saveTarjeta(tarjeta);
 		maCarritoService.DeleteCarrito(user.getIdUsuario());
 		model.addObject("mensaje", "Pedido Creado Corectamente");
 		return model;
@@ -285,5 +296,12 @@ public class PedidoController {
 		model.addObject("reportes", reportes);
 		return model;
 	}
+	
+//	@RequestMapping(value="/rPedido")
+//	public ModelAndView spedidos(){
+//		ModelAndView model = new ModelAndView("user/rPedido");
+//		
+//		return model;
+//	}
 
 }

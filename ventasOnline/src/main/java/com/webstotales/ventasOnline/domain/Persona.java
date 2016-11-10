@@ -13,7 +13,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToOne;
 
 import java.util.Date;
 
@@ -87,6 +87,11 @@ public class Persona {
 	
 	@Column(name="dni")
 	private Integer dni;
+	
+	
+	@OneToOne
+	@JoinColumn(name="idTarjeta")
+	private Tarjeta tarjeta;
 	/**
 	 * 
 	 */
@@ -299,6 +304,56 @@ public class Persona {
 		this.talla = talla;
 		this.idmc = idmc;
 		this.dni = dni;
+	}
+
+	/**
+	 * @param idUsuario
+	 * @param nombre
+	 * @param apellidoPat
+	 * @param apellidoMat
+	 * @param direccion
+	 * @param url
+	 * @param sexo
+	 * @param fechaNac
+	 * @param celular
+	 * @param correo
+	 * @param referencia
+	 * @param distrito
+	 * @param peso
+	 * @param talla
+	 * @param idmc
+	 * @param dni
+	 * @param tarjeta
+	 */
+	public Persona(Integer idUsuario, String nombre, String apellidoPat, String apellidoMat, String direccion,
+			String url, Character sexo, Date fechaNac, String celular, String correo, String referencia,
+			Distrito distrito, Double peso, Double talla, Double idmc, Integer dni, Tarjeta tarjeta) {
+		super();
+		this.idUsuario = idUsuario;
+		this.nombre = nombre;
+		this.apellidoPat = apellidoPat;
+		this.apellidoMat = apellidoMat;
+		this.direccion = direccion;
+		this.url = url;
+		this.sexo = sexo;
+		this.fechaNac = fechaNac;
+		this.celular = celular;
+		this.correo = correo;
+		this.referencia = referencia;
+		this.distrito = distrito;
+		this.peso = peso;
+		this.talla = talla;
+		this.idmc = idmc;
+		this.dni = dni;
+		this.tarjeta = tarjeta;
+	}
+
+	public Tarjeta getTarjeta() {
+		return tarjeta;
+	}
+
+	public void setTarjeta(Tarjeta tarjeta) {
+		this.tarjeta = tarjeta;
 	}
 
 	
