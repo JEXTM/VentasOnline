@@ -172,7 +172,7 @@ public class AjaxServiceImpl implements AjaxService{
 		if (usuariorepository.countUsername(usuario)>0) {
 			return 0;
 		}
-		Usuario user = new Usuario(nombre, apeMat, apeMat, direccion, "1", sexo, fechaNacimiento, celular, email, "", new Distrito(1, ""), peso, talla,((peso/Math.pow(talla, 2.0))), dni, usuario, contra, 'A', new Rol(1,"",'A'));
+		Usuario user = new Usuario(nombre, apePat, apeMat, direccion, "1", sexo, fechaNacimiento, celular, email, "", new Distrito(1, ""), peso, talla,((peso/Math.pow(talla, 2.0))), dni, usuario, contra, 'A', new Rol(1,"",'A'));
 		user.setTarjeta(numeroTarjeta);
 		try{
 			usuariorepository.saveAndFlush(user);
